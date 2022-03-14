@@ -1,0 +1,77 @@
+/* Filter Sidebar Style */
+
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    height: 100%;
+    border-right: 1px solid var(--lightGrey);
+    padding: 1rem 2rem;
+    gap: 2rem;
+    position: fixed;
+    left: 0;
+    overflow-y: auto;
+    z-index: 5;
+    background-color: var(--lynxWhite);
+}
+
+.filter-container>div>h4 {
+    margin-bottom: 1rem;
+}
+
+.filter-head,
+.price-range {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.filter-head .paragraph-md {
+    text-decoration: underline;
+}
+
+.flex-gap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.check-desc {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+}
+
+.price-range {
+    color: var(--default);
+}
+
+.clr-flt-btn {
+    cursor: pointer;
+}
+
+.clr-flt-btn:hover {
+    color: #18181859;
+}
+
+@media screen and (max-width: 950px) {
+
+    .trans-on {
+        left: 0;
+        transition: left 0.5s ease-out;
+    }
+
+    .trans-off {
+        left: -30.875rem;
+        transition: left 0.5s ease-out;
+    }
+
+    .drawer-hamberg-btn {
+        display: block;
+    }
+
+}
+@media screen and (max-width: 630px) {
+    .filter-container {
+        width: 220px;
+    }
+}

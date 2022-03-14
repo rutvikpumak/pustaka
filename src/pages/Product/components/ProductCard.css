@@ -1,0 +1,89 @@
+/* Product Card Style */
+
+.card-img {
+    width: 100%;
+    height: 15rem;
+    object-fit: contain;
+}
+
+.card-title-header {
+    font-size: 0.85rem;
+}
+
+.default {
+    background-color: var(--darkBlue);
+}
+
+.add-cart {
+    margin: 7px 5px;
+}
+
+.card-badge {
+    background: rgb(0, 160, 152)
+}
+
+.horizontal-img {
+    width: 35%;
+    height: 10rem;
+    padding: 0.5rem;
+}
+
+.wishlist-icon {
+    color: var(--lightGrey);
+    position: absolute;
+    display: inline-block;
+    padding: 0.4rem 0.5rem;
+    font-weight: var(--font-semiBold);
+    font-size: 1rem;
+    right: 2%;
+    top: 1%;
+}
+
+.wishlist-icon:hover {
+    color: var(--danger);
+}
+
+.card-star {
+    background-color: var(--green);
+    color: white;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    font-weight: var(--font-semiBold);
+}
+
+.card-description {
+    text-align: left;
+}
+
+@media screen and (max-width: 630px) {
+    .card {
+        width: 10rem;
+    }
+
+
+    .card-img {
+        height: 10rem;
+    }
+
+    .card-title-header {
+        font-size: 0.7rem;
+    }
+
+    .card-description {
+        font-size: 0.5rem;
+    }
+
+    .add-cart {
+        margin: 5px;
+        font-size: 0.8rem;
+        padding: 5px 0px;
+    }
+
+    .card-badge {
+        font-size: 0.5rem;
+    }
+}

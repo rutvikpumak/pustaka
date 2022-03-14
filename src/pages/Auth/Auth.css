@@ -1,0 +1,106 @@
+.auth-container {
+    flex-grow: 1;
+    flex-direction: column;
+    height: calc(100vh - 71px);
+}
+
+.auth-main-container {
+    flex-direction: column;
+    width:25rem;
+    padding: 2rem;
+    gap: 2rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.auth-main,
+.auth-checkbox,
+.first-last-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.3rem;
+    font-size: 0.8rem;
+}
+
+.auth-main-container input{
+    border-radius: var(--border-sm);
+    border: 2px solid #dfdfdf;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    cursor: pointer;
+}
+
+.auth-main-container input::placeholder {
+    font-size: 0.9rem;
+}
+
+.auth-email,
+.auth-pwd,
+.auth-firstname,
+.auth-lastname {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-checkbox {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.1rem
+}
+
+.auth-checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    cursor: pointer;
+}
+
+.auth-checkbox a {
+    color: var(--main-color);
+    margin-left: 1rem;
+}
+
+.auth-primary-btn {
+    cursor: pointer;
+    background-color: var(--link);
+    color: var(--white);
+    padding: 0.5rem 0;
+}
+
+.auth-primary-btn a {
+    color: var(--white);
+}
+
+.auth-secondary-btn {
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+.auth-secondary-btn a {
+    font-size: 1rem;
+    color: var(--black);
+}
+
+.auth-main label {
+    margin-bottom: 0.5rem;
+}
+
+.first-last-wrapper{
+    flex-direction: row;
+    gap:0.5rem
+}
+
+.first-last-wrapper .text-input{
+   width: 100%;
+}
+
+@media screen and (max-width:500px) {
+    .auth-main-container {
+        width:20rem;
+        padding: 1rem;
+    }
+    .auth-main{
+        gap:1rem
+    }
+}

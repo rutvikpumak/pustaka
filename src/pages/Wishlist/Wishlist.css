@@ -1,0 +1,66 @@
+.wishlist-container {
+    flex-grow: 1;
+    font-size: 1rem;
+}
+
+.wishlist-main-container {
+    padding-top: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.wishlist-manage {
+    display: flex;
+    gap: 5rem;
+    border-top: 1px solid var(--lightGrey);
+}
+
+.wishlist-item {
+    width: 28.5rem;
+    padding: 1.5rem 0;
+    display: flex;
+    border-bottom: 1px solid var(--lightGrey);
+}
+
+.wishlist-item .card-title-header {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.wishlist img {
+    object-fit: contain;
+    width: 150px;
+    height: 130px;
+    margin-right: 1rem;
+}
+
+.item-info,
+.item-info header {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.item-info {
+    flex-direction: column;
+    gap: 1rem
+}
+
+.delete-icon {
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    opacity: 0.7;
+}
+
+.move-to-cart {
+    max-width: 80%;
+    padding: 0.25rem;
+}
+
+@media screen and (max-width:500px) {
+    .wishlist-item {
+        width: inherit;
+    }
+}

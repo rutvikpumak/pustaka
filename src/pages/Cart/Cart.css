@@ -1,0 +1,92 @@
+.cart-container {
+    flex-grow: 1;
+}
+
+.cart-main-container {
+    padding-top: 3rem;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.cart-manage {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.horizontal-container {
+    margin-bottom: 3rem;
+    width: 25rem;
+}
+
+.horizontal-btn button {
+    font-weight: 550;
+    background-color: var(--lynxWhite);
+}
+
+.price-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 2rem;
+    height: fit-content;
+}
+
+.price-totalAmt {
+    border-top: 1px solid var(--lightGrey);
+    border-bottom: 1px solid var(--lightGrey);
+    padding: 0.5rem 0;
+}
+
+.price-calculate {
+    border-top: 1px solid var(--lightGrey);
+    padding-top: 0.5rem;
+}
+
+.price-calculate ul {
+    margin-top: 0.5rem;
+}
+
+.price-details ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    align-items: center;
+}
+
+.later-btn {
+    color: var(--darkBlue)
+}
+
+.coupon-btn {
+    background-color: inherit;
+    padding: 0.2rem 0.5rem;
+    font-size: 1rem;
+}
+
+.coupon {
+    padding: 0.5rem 0 1rem 0;
+    border-bottom: 1px solid var(--lightGrey);
+}
+
+
+@media screen and (max-width:500px) {
+
+    .cart-manage {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .horizontal-container,
+    .price-details {
+        width: 20rem;
+        margin-bottom: 2rem;
+    }
+
+    .price-details ul {
+        gap: 0rem;
+    }
+
+}

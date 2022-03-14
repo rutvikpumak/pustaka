@@ -1,0 +1,276 @@
+/* Navbar Styles */
+.navbar {
+    flex-direction: column;
+}
+
+.navbar-main {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.navbar-right {
+    gap: 2rem;
+}
+
+.cart-badge {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+.navbar-right li span {
+    font-size: 0.6rem;
+}
+
+.notification-icon {
+    font-size: 0.2rem;
+    padding: 0.4rem;
+    height: 1.2rem;
+    top: -5px;
+}
+
+.navbar-right li {
+    cursor: pointer;
+}
+
+.navbar-right li :hover {
+    opacity: 0.8;
+}
+
+.navbar-right li img {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 5px;
+}
+
+.nav-cart {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem
+}
+
+/* Search Bar */
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    padding: 0.4rem 0.9rem;
+    gap: 1rem;
+    border-radius: var(--border-sm);
+    width: 25%;
+    overflow: auto;
+    border-radius: var(--border-lg);
+}
+
+.search-bar {
+    outline: none;
+    border: none;
+    width: 100%;
+}
+
+.search-container .fa {
+    color: var(--main-color)
+}
+
+.search-bar::placeholder {
+    color: var(--lightGrey);
+    font-weight: var(--font-light);
+}
+
+.primary-btn {
+    cursor: pointer;
+    background-color: var(--link);
+    color: var(--white);
+    padding: 0.5rem 0;
+}
+
+.login-btn {
+    font-size: 1.25rem;
+    font-weight: var(--font-semiBold);
+    letter-spacing: 0.5px;
+}
+
+.nav-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-left h3 {
+    letter-spacing: 0.5px;
+}
+
+.home-container {
+    font-family: 'Montserrat', sans-serif;
+    padding: 3rem 4rem;
+    flex-grow: 1
+}
+
+.home-img-container {
+    position: relative;
+}
+
+.bg-img-container {
+    /* background-image: url('./images/home-img.jpg'); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 31.25rem;
+}
+
+.home-page-text {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    bottom: 35%;
+    left: 20%;
+    color: white;
+    z-index: 1;
+}
+
+.main-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem
+}
+
+.main-text-title {
+    text-align: left;
+    font-weight: var(--font-bold);
+    font-size: 3rem;
+    line-height: 1.4;
+}
+
+.home-img-container .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    transition: .5s ease;
+}
+
+.shop-now-btn {
+    width: fit-content;
+}
+
+
+/* Category Container Styles */
+.category-container,
+.category-heading .paragraph-md,
+.category-row {
+    margin-top: 2rem;
+}
+
+.box,
+.category-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem
+}
+
+.detail-box p {
+    margin-top: 1rem
+}
+
+.box {
+    background-color: var(--lynxWhite);
+    border-radius: 50%;
+    flex-wrap: wrap;
+    height: 11.875rem;
+    width: 11.875rem;
+    padding: 2rem 1rem 0rem 1rem;
+    transition: transform .2s ease, -webkit-transform .2s ease;
+    cursor: pointer;
+}
+
+.box:hover {
+    transform: scale(1.03);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.footer {
+    margin-top: 3rem;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0 0.5rem 0.5rem;
+    background-color: var(--darkBlue);
+    color: var(--white);
+    letter-spacing: 0.5px;
+}
+
+.icon-bar {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:500px){
+
+    .home-container {
+        padding: 1rem;
+    }
+
+    .navbar-right {
+        gap: 1.5rem
+    }
+
+    .navbar {
+        justify-content: space-between;
+        padding: 0.8rem 1rem;
+        gap: 1rem
+    }
+
+    .category-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .navbar-main {
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+    }
+
+    .navbar-left a h2 {
+        font-size: 1.3rem;
+    }
+
+    .shop-now-btn{
+        padding: 0.4rem 0.5rem;
+        font-size: 0.7rem;
+    }
+
+    .search-container {
+        display: none;
+    }
+
+    .search-mob {
+        display: flex;
+        width: 90%;
+    }
+
+    .home-page-text {
+        bottom: 15%;
+        left: 10%;
+    }
+
+    .main-text-title {
+        font-size: 2.2rem;
+    }
+
+    .bg-img-container {
+        height: 25rem
+    }
+}
+
+@media screen and (min-width:500px) {
+    .search-mob {
+        display: none
+    }
+}
