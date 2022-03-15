@@ -1,1 +1,1 @@
-export { useData, DataProvider } from "./data/DataContext";
+export { useData, DataProvider } from "./data/dataContext";
