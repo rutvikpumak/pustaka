@@ -24,13 +24,13 @@ export function sortData(products, sortBy, priceRange, sortByRating) {
   return products;
 }
 
-const union = (...arr) => {
-  const uni = arr.reduce((acc, curr) => {
+const unionCategory = (...arr) => {
+  const data = arr.reduce((acc, curr) => {
     return acc.concat(
       curr.filter((el) => !acc.some((ele) => ele._id === el._id))
     );
   }, []);
-  return uni;
+  return data;
 };
 
 export function filterData(products, category) {
@@ -39,7 +39,7 @@ export function filterData(products, category) {
   for (const cat in category) {
     if (category[cat]) {
       flag = true;
-      filterProducts = union(
+      filterProducts = unionCategory(
         filterProducts,
         products.filter((ele) => ele.category === cat)
       );
