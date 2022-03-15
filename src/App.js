@@ -24,7 +24,7 @@ function App() {
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/product" element={<Product />} />
           <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/productPage" element={<ProductPage />} />
+          <Route path="/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
         </Routes>

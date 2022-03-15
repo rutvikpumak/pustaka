@@ -1,6 +1,18 @@
+import { useNavigate } from "react-router";
+import { useData } from "../../../context";
+import {
+  addToCart,
+  removeFromCart,
+  updateQtyFromCart,
+} from "../../../services";
 import "./ProductCard.css";
 
+export const calcPercentage = (price, originalPrice) =>
+  Math.floor(Math.abs((price / originalPrice) * 100 - 100));
+
 export function ProductCard({ product }) {
+  const { dataDispatch, cart, products } = useData();
+  const navigate = useNavigate();
   const {
     _id: id,
     img,
@@ -12,17 +24,19 @@ export function ProductCard({ product }) {
     rating,
   } = product;
 
-  const calcPercentage = (price, originalPrice) =>
-    Math.floor(Math.abs((price / originalPrice) * 100 - 100));
-
   return (
     <div key={id} className="card">
-      <img className="card-img" src={img} alt={name} />
+      <img
+        className="card-img"
+        src={img}
+        alt={name}
+        onClick={() => navigate(`/${id}`)}
+      />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span className="wishlist-icon">
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>
-      <div className="card-info">
+      <div className="card-info" onClick={() => navigate(`/${id}`)}>
         <div className="">
           <div className="card-title">
             <h3 className="card-title-header">{name}</h3>

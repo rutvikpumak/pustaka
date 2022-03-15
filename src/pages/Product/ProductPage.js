@@ -1,34 +1,50 @@
 import React from "react";
 import "./ProductPage.css";
+import { useNavigate, useParams } from "react-router";
+import { calcPercentage } from "./components/ProductCard";
+import { useData } from "../../context";
 
 export function ProductPage() {
+  const { productId } = useParams();
+  const navigate = useNavigate();
+
+  const { products } = useData();
+  console.log(products, productId);
+  const product = products?.find((product) => product._id === productId);
+  const {
+    _id: id,
+    img,
+    name,
+    author,
+    price,
+    originalPrice,
+    isBestSeller,
+    category,
+    rating,
+  } = product;
+
   return (
     <div className="single-card-container flex-center">
       <div className="single-card flex-center">
         <div className="single-card-left">
-          <img
-            className="single-card-img"
-            src="https://rukminim1.flixcart.com/image/612/612/kwxv98w0/book/l/z/y/do-epic-shit-original-imag9gcfcwfvwtep.jpeg?q=70"
-            alt=""
-          />
-          <span className="card-badge">Best Seller</span>
+          <img className="single-card-img" src={img} alt="" />
+          {isBestSeller && <span className="card-badge">Best Seller</span>}
         </div>
 
         <div className="single-card-right">
-          <h3 className="single-card-title-header">Do Epic Shit</h3>
+          <h3 className="single-card-title-header">{name}</h3>
 
           <div className="star-ratings">
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
-            <i className="fa fa-star"></i>
+            {rating}
             <i className="fa fa-star"></i>
           </div>
 
           <div className="price">
-            <p className="disc-price">₹850</p>
-            <p className="actual-price">₹1500</p>
-            <p className="price-percentage">(50% OFF)</p>
+            <p className="disc-price">₹{price}</p>
+            <p className="actual-price">₹{originalPrice}</p>
+            <p className="price-percentage">
+              {calcPercentage(price, originalPrice)}% OFF
+            </p>
           </div>
           <p className="paragraph-sm msg">
             <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few
@@ -52,10 +68,10 @@ export function ProductPage() {
           <div className="other-info">
             <li>
               <ul>
-                Author : <p className="card-description">Ankur Warikoo</p>
+                Author : <p className="card-description">{author}</p>
               </ul>
               <ul>
-                Category : <p className="category">Self Help</p>
+                Category : <p className="category">{category}</p>
               </ul>
               <ul>
                 Binding : <p>Hard Cover</p>

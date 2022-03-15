@@ -42,9 +42,9 @@ export function Product() {
 
         <div className="responsive-grid">
           {sortedData.map((product) => (
-            <Link key={product._id} to="/productPage">
-              <ProductCard product={product} />
-            </Link>
+            // <Link key={product._id} to="/productPage">
+            <ProductCard product={product} />
+            // </Link>
           ))}
         </div>
       </div>
