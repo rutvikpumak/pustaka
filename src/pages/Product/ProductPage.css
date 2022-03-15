@@ -96,25 +96,27 @@
         gap: 1rem;
         box-shadow: none
     }
-    .single-card-right .btn{
-        padding:1rem;
+
+    .single-card-right .btn {
+        padding: 1rem;
         height: 3.5rem;
-        border-radius:0;
+        border-radius: 0;
         position: fixed;
         bottom: 0;
     }
-    .single-card-right .default  {
+
+    .single-card-right .default {
         position: fixed;
-        right:  0;
+        right: 0;
         left: 50%;
     }
-    
+
     .single-card-right .wishlist-btn {
-        left:  0;
+        left: 0;
         right: 50%;
-        
+
         background-color: var(--default);
         color: var(--white);
     }
-   
+
 }

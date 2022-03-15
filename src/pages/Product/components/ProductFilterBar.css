@@ -45,6 +45,11 @@
     color: var(--default);
 }
 
+.filter-container label,
+input[type="range"] {
+    cursor: pointer;
+}
+
 .clr-flt-btn {
     cursor: pointer;
 }
@@ -70,6 +75,7 @@
     }
 
 }
+
 @media screen and (max-width: 630px) {
     .filter-container {
         width: 220px;

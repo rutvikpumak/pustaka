@@ -1,14 +1,43 @@
-import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { ACTION_TYPE } from "../../utils/constant";
+import { initialState, dataReducer } from "../../reducer/DataReducer";
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(dataReducer, initialState);
 
-    const [products,setProducts]=  useState([]);
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data: category } = await axios.get("/api/categories");
+        dispatch({
+          type: ACTION_TYPE.INITIALIZE_CATEGORIES,
+          payload: category.categories,
+        });
+
+        const { data: products } = await axios.get("/api/products");
+        dispatch({
+          type: ACTION_TYPE.INITIALIZE_PRODUCTS,
+          payload: products.products,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   return (
     <DataContext.Provider
-      value={{products,setProducts}}
+      value={{
+        sortBy: state.sortBy,
+        sortByRating: state.sortByRating,
+        priceRange: state.priceRange,
+        category: state.category,
+        products: state.products,
+        dataDispatch: dispatch,
+      }}
     >
       {children}
     </DataContext.Provider>

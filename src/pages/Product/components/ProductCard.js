@@ -12,6 +12,9 @@ export function ProductCard({ product }) {
     rating,
   } = product;
 
+  const calcPercentage = (price, originalPrice) =>
+    Math.floor(Math.abs((price / originalPrice) * 100 - 100));
+
   return (
     <div key={id} className="card">
       <img className="card-img" src={img} alt={name} />
@@ -34,30 +37,11 @@ export function ProductCard({ product }) {
           <p className="disc-price">₹{price}</p>
           <p className="actual-price">₹{originalPrice}</p>
           <p className="price-percentage">
-            ({Math.floor(Math.abs((price / originalPrice) * 100 - 100))}% OFF)
+            ({calcPercentage(price, originalPrice)}% OFF)
           </p>
         </div>
       </div>
-      <button
-        // onClick={() =>
-        //   addProductToCart(
-        //     {
-        //       id,
-        //       img,
-        //       name,
-        //       author,
-        //       price,
-        //       originalPrice,
-        //       isBestSeller,
-        //     },
-        //     cartCount,
-        //     setCounter,
-        //     myCart,
-        //     setMyCart
-        //   )
-        // }
-        className="btn default add-cart"
-      >
+      <button className="btn default add-cart">
         <i className="fa fa-shopping-cart"></i>
         Add to Cart
       </button>

@@ -1,20 +1,33 @@
-import "./ProductFilterBar.css";
-
 import React from "react";
+import "./ProductFilterBar.css";
+import { ACTION_TYPE } from "../../../utils/constant";
+import { useData } from "../../../context";
+
+const STARS = [1, 2, 3, 4];
 
 export function ProductFilterBar() {
-  const STARS = [1, 2, 3, 4];
+  const { dataDispatch, sortBy, priceRange, sortByRating, products, category } =
+    useData();
+
+  const changeHandler = (typeOfDispatch, typeOfAction, e) => {
+    dataDispatch({
+      type: typeOfDispatch,
+      payload:
+        typeOfDispatch === "CATEGORY"
+          ? { [typeOfAction]: e.target.checked }
+          : typeOfAction,
+    });
+  };
+
+  const isSortByRating = (star) => sortByRating && sortByRating === star;
+  const isSortByPrice = (type) => sortBy && sortBy === type;
+
   return (
     <div className={`filter-container trans-off`}>
       <div className="filter-head">
         <h4>Filters</h4>
         <p
-          //   onClick={() => {
-          //     filterDispatch({
-          //       type: "CLEAR_FILTER"
-          //     });
-          //     setDrawer(!drawer);
-          //   }}
+          onClick={() => changeHandler(ACTION_TYPE.CLEAR_FILTER, products)}
           className="paragraph-md clr-flt-btn"
         >
           Clear
@@ -35,13 +48,10 @@ export function ProductFilterBar() {
             className="slider"
             min="100"
             max="1000"
-            // value={priceRange}
-            // onChange={(e) => {
-            //   filterDispatch({
-            //     type: "PRICE_RANGE",
-            //     payload: e.target.value
-            //   });
-            // }}
+            value={priceRange}
+            onChange={(e) =>
+              changeHandler(ACTION_TYPE.PRICE_RANGE, e.target.value, e)
+            }
           />
         </div>
       </div>
@@ -49,42 +59,25 @@ export function ProductFilterBar() {
       <div className="filter-category">
         <h4>Category</h4>
         <div className="flex-gap">
-          <label className="select-input">
-            <input
-              type="checkbox"
-              name="light"
-              className="checkbox-input"
-              //   checked={selfHelp}
-              //   onChange={() => {
-              //     filterDispatch({ type: "SELF_HELP" });
-              //   }}
-            />
-            <span className="check-desc">Self Help</span>
-          </label>
-          <label className="select-input">
-            <input
-              type="checkbox"
-              name="light"
-              className="checkbox-input"
-              //   checked={fiction}
-              //   onChange={() => {
-              //     filterDispatch({ type: "FICTION" });
-              //   }}
-            />
-            <span className="check-desc">Fiction</span>
-          </label>
-          <label className="select-input">
-            <input
-              type="checkbox"
-              name="light"
-              className="checkbox-input"
-              //   checked={nonFiction}
-              //   onChange={() => {
-              //     filterDispatch({ type: "NON_FICTION" });
-              //   }}
-            />
-            <span className="check-desc">Non Fiction</span>
-          </label>
+          {Object.entries(category).map((item) => {
+            const [catName, isCatChecked] = item;
+            return (
+              <label key={item} className="select-input">
+                <input
+                  type="checkbox"
+                  name="light"
+                  className="checkbox-input"
+                  checked={isCatChecked}
+                  onChange={(e) =>
+                    changeHandler(ACTION_TYPE.CATEGORY, catName, e)
+                  }
+                />
+                <span className="check-desc">
+                  {`${catName.charAt(0).toUpperCase()}${catName.slice(1)}`}
+                </span>
+              </label>
+            );
+          })}
         </div>
       </div>
 
@@ -92,22 +85,16 @@ export function ProductFilterBar() {
         <h4>Rating</h4>
         <div className="flex-gap">
           {STARS.map((star) => (
-            <label
-              key={star}
-              className="select-input"
-              //   onChange={() => {
-              //     filterDispatch({
-              //       type: "SORT_BY_RATING",
-              //       payload: star
-              //     });
-              //   }}
-            >
+            <label key={star} className="select-input">
               <input
                 type="radio"
                 name="rating"
                 className="radio-input"
                 value=""
-                // checked={sortByRating && sortByRating === star}
+                checked={isSortByRating(star)}
+                onChange={() => {
+                  changeHandler(ACTION_TYPE.SORT_BY_RATING, star);
+                }}
               />
               <span className="check-desc">{star} Stars & above</span>
             </label>
@@ -123,10 +110,8 @@ export function ProductFilterBar() {
               type="radio"
               name="sort"
               className="radio-input"
-              //   checked={sortBy && sortBy === "lowToHigh"}
-              //   onChange={() => {
-              //     filterDispatch({ type: "SORT_BY", payload: "lowToHigh" });
-              //   }}
+              checked={isSortByPrice("LOW_TO_HIGH")}
+              onChange={() => changeHandler(ACTION_TYPE.SORT_BY, "LOW_TO_HIGH")}
             />
             <span className="check-desc">Price - Low to High</span>
           </label>
@@ -135,10 +120,8 @@ export function ProductFilterBar() {
               type="radio"
               name="sort"
               className="radio-input"
-              //   checked={sortBy && sortBy === "highToLow"}
-              //   onChange={() => {
-              //     filterDispatch({ type: "SORT_BY", payload: "highToLow" });
-              //   }}
+              checked={isSortByPrice("HIGH_TO_LOW")}
+              onChange={() => changeHandler(ACTION_TYPE.SORT_BY, "HIGH_TO_LOW")}
             />
             <span className="check-desc">Price - High to Low</span>
           </label>

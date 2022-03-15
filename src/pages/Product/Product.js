@@ -1,36 +1,47 @@
 import React, { useEffect } from "react";
-import axios from "axios";
 import { useData } from "../../context";
+import { Link } from "react-router-dom";
 import "./Product.css";
 import { ProductCard } from "./components/ProductCard";
 import { ProductFilterBar } from "./components/ProductFilterBar";
-import { Link } from "react-router-dom";
+import { filterData, sortData } from "../../utils/getFilterData";
 
 export function Product() {
-  const { products, setProducts } = useData();
+  const {
+    category,
+    products: data,
+    sortBy,
+    priceRange,
+    sortByRating,
+  } = useData();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const { data } = await axios.get("api/products");
-        setProducts(data.products);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, []);
+  const filteredData = filterData([...data], category);
+  const sortedData = sortData(
+    [...filteredData],
+    sortBy,
+    priceRange,
+    sortByRating
+  );
 
   return (
     <div className="product-main-container">
       <ProductFilterBar />
       <div className="product-list-container">
         <div className="product-list-header">
-          <h3>Showing All Products</h3>
-          <p className="paragraph-sm">({products.length} products)</p>
+          {sortedData.length > 0 ? (
+            <>
+              <h3>Showing All Products</h3>
+              <p className="paragraph-sm">({sortedData.length} products)</p>
+            </>
+          ) : (
+            data.length > 0 && (
+              <h1>Sorry , Products are not available for chosen category.</h1>
+            )
+          )}
         </div>
 
         <div className="responsive-grid">
-          {products.map((product) => (
+          {sortedData.map((product) => (
             <Link key={product._id} to="/productPage">
               <ProductCard product={product} />
             </Link>
