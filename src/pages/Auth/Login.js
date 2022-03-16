@@ -12,7 +12,9 @@ export function Login() {
   const { token, loginUser } = useAuth();
 
   useEffect(() => {
-    loginUser(loginForm.email, loginForm.password);
+    (async () => {
+      loginUser(loginForm.email, loginForm.password);
+    })();
   }, [loginForm.email, loginForm.password]);
 
   if (token) {
