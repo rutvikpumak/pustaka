@@ -9,7 +9,8 @@ export function UserProfile() {
 
   const logOutHandler = () => {
     localStorage.removeItem("login");
-    setUser({});
+    localStorage.removeItem("user");
+    setUser();
     setToken("");
     navigate("/home");
   };

@@ -6,7 +6,8 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const localStorageToken = JSON.parse(localStorage.getItem("login"));
   const [token, setToken] = useState(localStorageToken?.token);
-  const [user, setUser] = useState({});
+  const localStorageUser = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState(localStorageUser?.user);
 
   const loginUser = async (email, password) => {
     if (email && password !== "") {
@@ -21,7 +22,8 @@ const AuthProvider = ({ children }) => {
             JSON.stringify({ token: encodedToken })
           );
           setToken(encodedToken);
-          setUser({ ...user, ...foundUser });
+          localStorage.setItem("user", JSON.stringify({ user: foundUser }));
+          setUser(foundUser);
         }
       } catch (error) {
         console.log("Error in login user", error);
