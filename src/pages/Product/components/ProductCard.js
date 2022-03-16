@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { useData } from "../../../context";
+import { useAuth, useData } from "../../../context";
 import {
   addToCart,
   removeFromCart,
@@ -13,6 +13,7 @@ export const calcPercentage = (price, originalPrice) =>
 export function ProductCard({ product }) {
   const { dataDispatch, cart, products } = useData();
   const navigate = useNavigate();
+  const { token } = useAuth();
   const {
     _id: id,
     img,
@@ -33,7 +34,10 @@ export function ProductCard({ product }) {
         onClick={() => navigate(`/${id}`)}
       />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
-      <span className="wishlist-icon">
+      <span
+        className="wishlist-icon"
+        onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
+      >
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>
       <div className="card-info" onClick={() => navigate(`/${id}`)}>
@@ -55,7 +59,10 @@ export function ProductCard({ product }) {
           </p>
         </div>
       </div>
-      <button className="btn default add-cart">
+      <button
+        className="btn default add-cart"
+        onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+      >
         <i className="fa fa-shopping-cart"></i>
         Add to Cart
       </button>

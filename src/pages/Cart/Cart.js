@@ -1,6 +1,6 @@
 import React from "react";
 import "./Cart.css";
-export  function Cart() {
+export function Cart() {
   return (
     <div class="cart-container">
       <div class="cart-main-container flex-center">
