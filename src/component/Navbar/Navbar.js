@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth/authContext";
 import "./Navbar.css";
 
 export default function Navbar() {
+  const { token } = useAuth();
+  const navigate = useNavigate();
   return (
     <div className="nav-header">
       <ul className="navbar">
@@ -29,41 +32,44 @@ export default function Navbar() {
             />
           </div>
           <ul className="navbar-right">
-            <li>
+            <li
+              onClick={() =>
+                token ? navigate("/userProfile") : navigate("/login")
+              }
+            >
               {" "}
-              <Link to="/login">
-                <img
-                  src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
-                  alt="login"
-                />
-              </Link>
+              <img
+                src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
+                alt="login"
+              />
             </li>
             <li>
-              <Link to="/wishlist">
-                <div className="icon cart-badge">
-                  <i className="fa fa-heart-o "></i>
-                  <div className="notification-icon flex-center">
+              <div
+                className="icon cart-badge"
+                onClick={() =>
+                  token ? navigate("/wishlist") : navigate("/login")
+                }
+              >
+                <i className="fa fa-heart-o "></i>
+                {/* <div className="notification-icon flex-center">
                     <span>1</span>
-                  </div>
-                </div>
-              </Link>
+                  </div> */}
+              </div>
             </li>
 
-            <Link to="/cart">
-              <li className="nav-cart">
-                <div className="icon cart-badge">
-                  <i className="fa fa-shopping-cart "></i>
-                  <div className="notification-icon flex-center">
-                    <span>1</span>
-                  </div>
-                  {/* {cartCount > 0 && (
+            <li
+              className="nav-cart"
+              onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+            >
+              <div className="icon cart-badge">
+                <i className="fa fa-shopping-cart "></i>
+                {/* {cartCount > 0 && (
                       <div className="notification-icon flex-center">
                         <span>{cartCount}</span>
                       </div>
                     )} */}
-                </div>
-              </li>
-            </Link>
+              </div>
+            </li>
           </ul>
         </div>
 

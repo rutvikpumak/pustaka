@@ -1,0 +1,155 @@
+.profile-container {
+  background-color: var(--lynxWhite);
+  flex-grow: 1;
+}
+
+.profile-main-container {
+  padding-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.tabs label {
+  flex-wrap: wrap;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  font-weight: var(--font-regular);
+  transition: background ease 0.3s;
+}
+
+.tabs label:hover {
+  color: var(--white);
+  background: var(--darkBlue);
+}
+
+.tabs .tab {
+  order: 9;
+  flex-grow: 1;
+  width: 100%;
+  display: none;
+  padding: 1rem;
+  border-radius: 0 0px 10px 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-top: 3px solid var(--main-color);
+}
+
+.tabs input[type="radio"] {
+  display: none;
+}
+
+.tabs input[type="radio"]:checked+label {
+  color: var(--white);
+  background: var(--darkBlue);
+}
+
+.tabs input[type="radio"]:checked+label+.tab {
+  display: block;
+}
+
+.details-header {
+  font-weight: var(--font-semiBold);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.profile-details-main {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.profile-details-main>div {
+  display: flex;
+  flex-direction: column;
+}
+
+.address-btn .btn,
+.address-form-btn .btn {
+  font-size: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  margin: 1rem 0.5rem 2rem 0;
+}
+
+.address-add {
+  background-color: inherit;
+  color: var(--black);
+  padding: 0;
+}
+
+/* Address Form */
+
+.address-form-container {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 2;
+  margin-top: 4rem;
+  transition: background ease 0.3s;
+}
+
+.address-form-input {
+  border-radius: var(--border-sm);
+  border: 2px solid #dfdfdf;
+  font-size: 1rem;
+  padding: 0.3rem 1rem;
+  cursor: pointer;
+  width: 400px
+}
+
+.address-form-input::placeholder {
+  font-size: 0.7rem;
+}
+
+.address-form,
+.address-form .form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem
+}
+
+.address-form {
+  padding: 1rem;
+  width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: var(--lynxWhite);
+
+}
+
+.address-form-btn {
+  display: flex;
+  gap: 1rem;
+
+}
+
+.address-form-btn .btn {
+  font-size: 1rem;
+}
+
+
+@media screen and (max-width:500px) {
+  .tabs label {
+    padding: 0.5rem 1rem;
+  }
+
+  .tabs {
+    width: 300px;
+  }
+
+
+  .address-form-input {
+    width: inherit;
+  }
+}

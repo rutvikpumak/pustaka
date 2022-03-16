@@ -2,14 +2,13 @@ import React from "react";
 import "./ProductPage.css";
 import { useNavigate, useParams } from "react-router";
 import { calcPercentage } from "./components/ProductCard";
-import { useData } from "../../context";
+import { useAuth, useData } from "../../context";
 
 export function ProductPage() {
   const { productId } = useParams();
   const navigate = useNavigate();
-
+  const { token } = useAuth();
   const { products } = useData();
-  console.log(products, productId);
   const product = products?.find((product) => product._id === productId);
   const {
     _id: id,
@@ -33,12 +32,10 @@ export function ProductPage() {
 
         <div className="single-card-right">
           <h3 className="single-card-title-header">{name}</h3>
-
           <div className="star-ratings">
             {rating}
             <i className="fa fa-star"></i>
           </div>
-
           <div className="price">
             <p className="disc-price">₹{price}</p>
             <p className="actual-price">₹{originalPrice}</p>
@@ -50,21 +47,17 @@ export function ProductPage() {
             <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few
             Left !
           </p>
-
           <span className="tag-msg">
             <i className="fa fa-tag" aria-hidden="true"></i> Fastest Delivery
           </span>
-
           <span className="tag-msg">
             <i className="fa fa-tag" aria-hidden="true"></i> Inclusive of All
             Taxes
           </span>
-
           <span className="tag-msg">
             <i className="fa fa-tag" aria-hidden="true"></i> Cash On Delivery
             Available
           </span>
-
           <div className="other-info">
             <li>
               <ul>
@@ -81,13 +74,17 @@ export function ProductPage() {
               </ul>
             </li>
           </div>
-
-          <button className="btn default ">
+          <button
+            className="btn default "
+            onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+          >
             <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add to
             Cart
           </button>
-
-          <button className="btn outlined-default  wishlist-btn">
+          <button
+            className="btn outlined-default  wishlist-btn"
+            onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
+          >
             {" "}
             <i className="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist
           </button>
