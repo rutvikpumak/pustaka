@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProductFilterBar.css";
-import { ACTION_TYPE } from "../../../utils/constant";
+import { ACTION_TYPE } from "../../../utils";
 import { useData } from "../../../context";
 
 const STARS = [1, 2, 3, 4];

@@ -5,10 +5,8 @@ import {
   removeFromCart,
   updateQtyFromCart,
 } from "../../../services";
+import { calcPercentage, ACTION_TYPE } from "../../../utils";
 import "./ProductCard.css";
-
-export const calcPercentage = (price, originalPrice) =>
-  Math.floor(Math.abs((price / originalPrice) * 100 - 100));
 
 export function ProductCard({ product }) {
   const { dataDispatch, cart, products } = useData();
@@ -24,7 +22,15 @@ export function ProductCard({ product }) {
     isBestSeller,
     rating,
   } = product;
+  const isInCart = cart?.find((cartProduct) => cartProduct._id === id);
 
+  function addToCartHandler() {
+    token
+      ? isInCart
+        ? navigate("/cart")
+        : addToCart(dataDispatch, product, token)
+      : navigate("/login");
+  }
   return (
     <div key={id} className="card">
       <img
@@ -61,10 +67,10 @@ export function ProductCard({ product }) {
       </div>
       <button
         className="btn default add-cart"
-        onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+        onClick={() => addToCartHandler()}
       >
         <i className="fa fa-shopping-cart"></i>
-        Add to Cart
+        {isInCart ? "Go to Cart" : "Add to Cart"}
       </button>
     </div>
   );

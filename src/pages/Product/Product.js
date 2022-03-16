@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Product.css";
 import { ProductCard } from "./components/ProductCard";
 import { ProductFilterBar } from "./components/ProductFilterBar";
-import { filterData, sortData } from "../../utils/getFilterData";
+import { filterData, sortData } from "../../utils";
 
 export function Product() {
   const {
@@ -42,9 +42,7 @@ export function Product() {
 
         <div className="responsive-grid">
           {sortedData.map((product) => (
-            // <Link key={product._id} to="/productPage">
             <ProductCard product={product} />
-            // </Link>
           ))}
         </div>
       </div>

@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context";
+import { useAuth, useData } from "../../context";
 import "./Navbar.css";
 
 export default function Navbar() {
   const { token } = useAuth();
+  const { cart } = useData();
   const navigate = useNavigate();
+
   return (
     <div className="nav-header">
       <ul className="navbar">
@@ -53,6 +55,11 @@ export default function Navbar() {
             >
               <div className="icon cart-badge">
                 <i className="fa fa-shopping-cart "></i>
+                {cart && cart.length > 0 && (
+                  <div className="notification-icon flex-center">
+                    <span>{cart.length}</span>
+                  </div>
+                )}
               </div>
             </li>
           </ul>

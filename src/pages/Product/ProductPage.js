@@ -1,14 +1,15 @@
 import React from "react";
 import "./ProductPage.css";
 import { useNavigate, useParams } from "react-router";
-import { calcPercentage } from "./components/ProductCard";
 import { useAuth, useData } from "../../context";
+import { ACTION_TYPE, calcPercentage } from "../../utils";
+import { addToCart } from "../../services";
 
 export function ProductPage() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { token } = useAuth();
-  const { products } = useData();
+  const { products, cart, dataDispatch } = useData();
   const product = products?.find((product) => product._id === productId);
   const {
     _id: id,
@@ -21,6 +22,7 @@ export function ProductPage() {
     category,
     rating,
   } = product;
+  const isInCart = cart.find((cartProduct) => cartProduct._id === id);
 
   return (
     <div className="single-card-container flex-center">
@@ -76,11 +78,18 @@ export function ProductPage() {
           </div>
           <button
             className="btn default "
-            onClick={() => (token ? navigate("/cart") : navigate("/login"))}
+            onClick={() =>
+              token
+                ? isInCart
+                  ? navigate("/cart")
+                  : addToCart(id, dataDispatch, product, token)
+                : navigate("/login")
+            }
           >
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i> Add to
-            Cart
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
+            {isInCart ? "Go to Cart" : "Add to Cart"}
           </button>
+
           <button
             className="btn outlined-default  wishlist-btn"
             onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
