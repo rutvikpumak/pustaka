@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from "../utils/constant";
+import { ACTION_TYPE } from "../utils";
 
 export const initialState = {
   sortBy: "",
@@ -6,6 +6,7 @@ export const initialState = {
   category: {},
   sortByRating: "",
   products: [],
+  cart: [],
 };
 
 export function dataReducer(state, action) {
@@ -58,6 +59,14 @@ export function dataReducer(state, action) {
           ...action.payload,
         },
       };
+    case ACTION_TYPE.ADD_TO_CART:
+      return { ...state, cart: [...action.payload] };
+
+    case ACTION_TYPE.REMOVE_FROM_CART:
+      return { ...state, cart: [...action.payload] };
+
+    case ACTION_TYPE.UPDATE_QTY_IN_CART:
+      return { ...state, cart: [...action.payload] };
 
     case ACTION_TYPE.CLEAR_FILTER:
       for (const cat in state.category) {
@@ -69,6 +78,7 @@ export function dataReducer(state, action) {
         sortByRating: "",
         priceRange: "",
         products: action.payload,
+        cart: state.cart,
       };
 
     default:

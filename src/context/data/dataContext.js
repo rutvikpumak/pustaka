@@ -37,6 +37,7 @@ const DataProvider = ({ children }) => {
         category: state.category,
         products: state.products,
         dataDispatch: dispatch,
+        cart: state.cart,
       }}
     >
       {children}
