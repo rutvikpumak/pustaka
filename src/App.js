@@ -7,7 +7,7 @@ import {
   ProductPage,
   UserProfile,
   Wishlist,
-} from "./pages/index.js";
+} from "./pages";
 import Mockman from "mockman-js";
 import Navbar from "./component/Navbar/Navbar";
 import { Login } from "./pages/Auth";

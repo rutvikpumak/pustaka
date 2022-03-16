@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
 import "./UserProfile.css";
 export function UserProfile() {
-  const { user, setUser, token, setToken } = useAuth();
-  const { firstName, lastName, email } = user && user;
+  const { user, setUser, setToken } = useAuth();
+  const { firstName, lastName, email } = user;
   const navigate = useNavigate();
 
   const logOutHandler = () => {

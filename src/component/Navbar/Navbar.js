@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth/authContext";
+import { useAuth } from "../../context";
 import "./Navbar.css";
 
 export default function Navbar() {
@@ -10,13 +10,6 @@ export default function Navbar() {
       <ul className="navbar">
         <div className="navbar-main ">
           <div className="navbar-left">
-            {/* <i
-                className="fa fa-bars drawer-hamberg-btn"
-                aria-hidden="true"
-                // onClick={() => setDrawer(!drawer)}
-              />
-                 */}
-
             <Link to="/home">
               <h2>Pustaka</h2>
             </Link>
@@ -51,9 +44,6 @@ export default function Navbar() {
                 }
               >
                 <i className="fa fa-heart-o "></i>
-                {/* <div className="notification-icon flex-center">
-                    <span>1</span>
-                  </div> */}
               </div>
             </li>
 
@@ -63,11 +53,6 @@ export default function Navbar() {
             >
               <div className="icon cart-badge">
                 <i className="fa fa-shopping-cart "></i>
-                {/* {cartCount > 0 && (
-                      <div className="notification-icon flex-center">
-                        <span>{cartCount}</span>
-                      </div>
-                    )} */}
               </div>
             </li>
           </ul>
