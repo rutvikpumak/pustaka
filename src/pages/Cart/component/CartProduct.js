@@ -1,14 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../../context";
-import { removeFromCart, updateQtyFromCart } from "../../../services";
-import { calcPercentage, ACTION_TYPE } from "../../../utils";
+import { calcPercentage, isProductInWishlist } from "../../../utils/cartUtils";
+import {
+  addToWishlist,
+  removeFromCart,
+  updateQtyFromCart,
+} from "../../../services";
 
 export function CartProduct({ product }) {
-  const { dataDispatch } = useData();
+  const { dataDispatch, wishlist } = useData();
   const { token } = useAuth();
+  const navigate = useNavigate();
+
+  const isInWishlist = isProductInWishlist(wishlist, product._id);
 
   const cartClickHandler = (type) =>
     updateQtyFromCart(product._id, dataDispatch, token, type);
+
+  const moveToWishlistHandler = () => {
+    addToWishlist(dataDispatch, product, token);
+    removeFromCart(product._id, dataDispatch, token);
+  };
 
   return (
     <div key={product._id} className="card horizontal-container">
@@ -37,9 +50,9 @@ export function CartProduct({ product }) {
             <button
               className="minus"
               onClick={() => {
-                cartClickHandler("DEC_QTY");
+                product.qty > 1 && cartClickHandler("DEC_QTY");
               }}
-              disabled={product.qty === 1 ? true : false}
+              disabled={product.qty > 1 ? false : true}
             >
               -
             </button>
@@ -59,7 +72,14 @@ export function CartProduct({ product }) {
         >
           REMOVE
         </button>
-        <button className="later-btn">MOVE TO WISHLIST</button>
+        <button
+          className="later-btn"
+          onClick={() =>
+            isInWishlist ? navigate("/wishlist") : moveToWishlistHandler()
+          }
+        >
+          {isInWishlist ? "ALREADY IN WISHLIST" : "MOVE TO WISHLIST"}
+        </button>
       </div>
     </div>
   );
