@@ -50,9 +50,9 @@ export function CartProduct({ product }) {
             <button
               className="minus"
               onClick={() => {
-                cartClickHandler("DEC_QTY");
+                product.qty > 1 && cartClickHandler("DEC_QTY");
               }}
-              disabled={product.qty === 1 ? true : false}
+              disabled={product.qty > 1 ? false : true}
             >
               -
             </button>
