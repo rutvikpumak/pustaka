@@ -11,6 +11,7 @@
     position: fixed;
     left: 0;
     overflow-y: auto;
+    padding-bottom: 80px;
     z-index: 5;
     background-color: var(--lynxWhite);
 }
