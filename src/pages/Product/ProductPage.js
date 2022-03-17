@@ -3,13 +3,14 @@ import "./ProductPage.css";
 import { useNavigate, useParams } from "react-router";
 import { useAuth, useData } from "../../context";
 import { ACTION_TYPE, calcPercentage } from "../../utils";
-import { addToCart } from "../../services";
+import { addToCart, addToWishlist } from "../../services";
+import { isProductInCart, isProductInWishlist } from "../../utils/cartUtils";
 
 export function ProductPage() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { token } = useAuth();
-  const { products, cart, dataDispatch } = useData();
+  const { products, cart, dataDispatch, wishlist } = useData();
   const product = products?.find((product) => product._id === productId);
   const {
     _id: id,
@@ -22,7 +23,24 @@ export function ProductPage() {
     category,
     rating,
   } = product;
-  const isInCart = cart.find((cartProduct) => cartProduct._id === id);
+  const isInCart = isProductInCart(cart, id);
+  const isInWishlist = isProductInWishlist(wishlist, id);
+
+  const addToCartHandler=()=> {
+    token
+      ? isInCart
+        ? navigate("/cart")
+        : addToCart(dataDispatch, product, token)
+      : navigate("/login");
+  }
+
+  const addToWishlistHandler=()=> {
+    token
+      ? isInWishlist
+        ? navigate("/wishlist")
+        : addToWishlist(dataDispatch, product, token)
+      : navigate("/login");
+  }
 
   return (
     <div className="single-card-container flex-center">
@@ -76,26 +94,18 @@ export function ProductPage() {
               </ul>
             </li>
           </div>
-          <button
-            className="btn default "
-            onClick={() =>
-              token
-                ? isInCart
-                  ? navigate("/cart")
-                  : addToCart(id, dataDispatch, product, token)
-                : navigate("/login")
-            }
-          >
+
+          <button className="btn default " onClick={() => addToCartHandler()}>
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
             {isInCart ? "Go to Cart" : "Add to Cart"}
           </button>
 
           <button
             className="btn outlined-default  wishlist-btn"
-            onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
+            onClick={() => addToWishlistHandler()}
           >
-            {" "}
-            <i className="fa fa-heart-o" aria-hidden="true"></i> Add to Wishlist
+            <i className="fa fa-heart-o" aria-hidden="true"></i>{" "}
+            {isInWishlist ? "Go to Wishlist" : "Add to Wishlist"}
           </button>
         </div>
       </div>

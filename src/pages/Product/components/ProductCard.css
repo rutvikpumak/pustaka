@@ -43,6 +43,10 @@
     color: var(--danger);
 }
 
+.wishlist-toggle {
+    color: var(--danger);
+}
+
 .card-star {
     background-color: var(--green);
     color: white;
@@ -63,7 +67,6 @@
     .card {
         width: 10rem;
     }
-
 
     .card-img {
         height: 10rem;

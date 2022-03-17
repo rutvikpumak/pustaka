@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useData } from "../../context";
-import { Link } from "react-router-dom";
 import "./Product.css";
 import { ProductCard } from "./components/ProductCard";
 import { ProductFilterBar } from "./components/ProductFilterBar";

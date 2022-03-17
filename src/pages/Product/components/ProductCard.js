@@ -2,14 +2,18 @@ import { useNavigate } from "react-router";
 import { useAuth, useData } from "../../../context";
 import {
   addToCart,
-  removeFromCart,
-  updateQtyFromCart,
+  addToWishlist,
+  removeFromWishlist,
 } from "../../../services";
-import { calcPercentage, ACTION_TYPE } from "../../../utils";
+import {
+  calcPercentage,
+  isProductInCart,
+  isProductInWishlist,
+} from "../../../utils/cartUtils";
 import "./ProductCard.css";
 
 export function ProductCard({ product }) {
-  const { dataDispatch, cart, products } = useData();
+  const { dataDispatch, cart, wishlist } = useData();
   const navigate = useNavigate();
   const { token } = useAuth();
   const {
@@ -22,15 +26,26 @@ export function ProductCard({ product }) {
     isBestSeller,
     rating,
   } = product;
-  const isInCart = cart?.find((cartProduct) => cartProduct._id === id);
 
-  function addToCartHandler() {
+  const isInCart = isProductInCart(cart, id);
+  const isInWishlist = isProductInWishlist(wishlist, id);
+
+  const addToCartHandler = () => {
     token
       ? isInCart
         ? navigate("/cart")
         : addToCart(dataDispatch, product, token)
       : navigate("/login");
-  }
+  };
+
+  const wishlistHandler = () => {
+    token
+      ? isInWishlist
+        ? removeFromWishlist(id, dataDispatch, token)
+        : addToWishlist(dataDispatch, product, token)
+      : navigate("/login");
+  };
+
   return (
     <div key={id} className="card">
       <img
@@ -41,8 +56,8 @@ export function ProductCard({ product }) {
       />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span
-        className="wishlist-icon"
-        onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
+        className={`wishlist-icon ${isInWishlist ? `wishlist-toggle` : ``}`}
+        onClick={() => wishlistHandler()}
       >
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>

@@ -4,7 +4,7 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const { token } = useAuth();
-  const { cart } = useData();
+  const { cart, wishlist } = useData();
   const navigate = useNavigate();
 
   return (
@@ -46,6 +46,11 @@ export default function Navbar() {
                 }
               >
                 <i className="fa fa-heart-o "></i>
+                {wishlist && wishlist.length > 0 && (
+                  <div className="notification-icon flex-center">
+                    <span>{wishlist.length}</span>
+                  </div>
+                )}
               </div>
             </li>
 
