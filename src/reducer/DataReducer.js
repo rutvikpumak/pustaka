@@ -7,6 +7,7 @@ export const initialState = {
   sortByRating: "",
   products: [],
   cart: [],
+  wishlist: [],
 };
 
 export function dataReducer(state, action) {
@@ -67,6 +68,12 @@ export function dataReducer(state, action) {
 
     case ACTION_TYPE.UPDATE_QTY_IN_CART:
       return { ...state, cart: [...action.payload] };
+
+    case ACTION_TYPE.ADD_TO_WISHLIST:
+      return { ...state, wishlist: [...action.payload] };
+
+    case ACTION_TYPE.REMOVE_FROM_WISHLIST:
+      return { ...state, wishlist: [...action.payload] };
 
     case ACTION_TYPE.CLEAR_FILTER:
       for (const cat in state.category) {

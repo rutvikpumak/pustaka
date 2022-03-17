@@ -38,6 +38,7 @@ const DataProvider = ({ children }) => {
         products: state.products,
         dataDispatch: dispatch,
         cart: state.cart,
+        wishlist: state.wishlist,
       }}
     >
       {children}
