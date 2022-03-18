@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useData } from "../../context";
 import "./Product.css";
 import { ProductCard } from "./components/ProductCard";
@@ -12,6 +12,7 @@ export function Product() {
     sortBy,
     priceRange,
     sortByRating,
+    setLoader,
   } = useData();
 
   const filteredData = filterData([...data], category);
@@ -21,7 +22,12 @@ export function Product() {
     priceRange,
     sortByRating
   );
-
+  useEffect(() => {
+    setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+  }, []);
   return (
     <div className="product-main-container">
       <ProductFilterBar />

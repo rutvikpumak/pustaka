@@ -1,5 +1,11 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { ACTION_TYPE } from "../../utils/constant";
 import { initialState, dataReducer } from "../../reducer/DataReducer";
 
@@ -7,7 +13,7 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
-
+  const [loader, setLoader] = useState(false);
   useEffect(() => {
     (async () => {
       try {
@@ -39,6 +45,8 @@ const DataProvider = ({ children }) => {
         dataDispatch: dispatch,
         cart: state.cart,
         wishlist: state.wishlist,
+        loader,
+        setLoader,
       }}
     >
       {children}

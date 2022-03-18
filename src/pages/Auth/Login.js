@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./Auth.css";
-import { useAuth } from "../../context";
+import { useAuth, useData } from "../../context";
 
 export function Login() {
   const [loginForm, setLoginForm] = useState({
@@ -10,6 +10,7 @@ export function Login() {
   });
   const navigate = useNavigate();
   const { token, loginUser } = useAuth();
+  const { setLoader } = useData();
 
   useEffect(() => {
     (async () => {
@@ -18,9 +19,11 @@ export function Login() {
   }, [loginForm.email, loginForm.password]);
 
   if (token) {
+    setLoader(true);
     setTimeout(() => {
       navigate("/product");
-    }, 100);
+      setLoader(false);
+    }, 500);
   }
 
   function loginHandler() {

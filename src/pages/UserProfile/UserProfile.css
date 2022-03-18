@@ -11,6 +11,9 @@
   gap: 2rem;
 }
 
+.title{
+  font-weight: var(--font-semiBold);
+}
 .tabs {
   display: flex;
   flex-wrap: wrap;
@@ -71,6 +74,7 @@
 .profile-details-main>div {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .address-btn .btn,
@@ -148,7 +152,9 @@
     width: 300px;
   }
 
-
+  .profile-details-main {
+       gap: 0.5rem;
+  }
   .address-form-input {
     width: inherit;
   }

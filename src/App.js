@@ -11,6 +11,8 @@ import {
 import Mockman from "mockman-js";
 import Navbar from "./component/Navbar/Navbar";
 import { Login } from "./pages/Auth";
+import { useData } from "./context";
+import { Loader } from "./component/Loader/Loader";
 
 function MockAPI() {
   return (
@@ -21,8 +23,10 @@ function MockAPI() {
 }
 
 function App() {
+  const { loader } = useData();
   return (
     <div className="App">
+      {loader && <Loader />}
       <Router>
         <Navbar />
         <Routes>
