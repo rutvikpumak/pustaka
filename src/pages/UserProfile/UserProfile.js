@@ -31,7 +31,7 @@ export function UserProfile() {
               type="radio"
               className="tabs"
               id="profile"
-              checked={check ? true : false}
+              checked={check}
               onClick={() => setChecked(true)}
             />
             <label htmlFor="profile">Profile</label>
@@ -50,13 +50,23 @@ export function UserProfile() {
                   </div>
                 </div>
               </div>
+              <div className="">
+                <h3 className="details-header">Account Settings</h3>
+                <button
+                  className="btn danger setting-logout"
+                  onClick={() => logOutHandler()}
+                >
+                  Log Out
+                </button>
+              </div>
             </div>
 
             <input
               type="radio"
               className="tabs"
               id="address"
-              onClick={() => setChecked(false)}
+              checked={!check}
+              onClick={() => setChecked(!check)}
             />
             <label htmlFor="address">Address</label>
             <div className="tab">
@@ -82,23 +92,6 @@ export function UserProfile() {
 
               <button className="btn default address-add">
                 + Add New Address
-              </button>
-            </div>
-
-            <input
-              type="radio"
-              name="tabs"
-              id="tabthree"
-              onClick={() => setChecked(false)}
-            />
-            <label htmlFor="tabthree">Settings</label>
-            <div className="tab">
-              <h3 className="details-header">Account Settings</h3>
-              <button
-                className="btn danger setting-logout"
-                onClick={() => logOutHandler()}
-              >
-                Log Out
               </button>
             </div>
           </div>

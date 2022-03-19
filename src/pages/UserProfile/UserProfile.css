@@ -27,6 +27,8 @@
   cursor: pointer;
   font-weight: var(--font-regular);
   transition: background ease 0.3s;
+  width:50%;
+  text-align: center;
 }
 
 .tabs label:hover {
@@ -63,6 +65,10 @@
   font-weight: var(--font-semiBold);
   font-size: 1.1rem;
   margin-bottom: 2rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+  text-align: center;
+  width: fit-content;
 }
 
 .profile-details-main {
