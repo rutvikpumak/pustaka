@@ -29,7 +29,7 @@ export function UserProfile() {
           <div className="tabs">
             <input
               type="radio"
-              name="tabs"
+              className="tabs"
               id="profile"
               checked={check ? true : false}
               onClick={() => setChecked(true)}
@@ -54,33 +54,35 @@ export function UserProfile() {
 
             <input
               type="radio"
-              name="tabs"
+              className="tabs"
               id="address"
               onClick={() => setChecked(false)}
             />
-            <label for="address">Address</label>
-            <div class="tab">
-              <h3 class="details-header">My Addresses</h3>
+            <label htmlFor="address">Address</label>
+            <div className="tab">
+              <h3 className="details-header">My Addresses</h3>
 
-              <div class="address-container">
-                <p class="paragraph-md">John Cena</p>
-                <p class="paragraph-sm">
+              <div className="address-container">
+                <p className="paragraph-md">John Cena</p>
+                <p className="paragraph-sm">
                   #1/4 , 100ft Ring Road, Karve Nagar, Bangalore, Maharashtra
                   560078
                 </p>
-                <p class="paragraph-sm">India.</p>
-                <p class="paragraph-sm">Phone Number : 2458544515</p>
-                <div class="address-btn">
-                  <button class="btn outlined-default address-edit">
+                <p className="paragraph-sm">India.</p>
+                <p className="paragraph-sm">Phone Number : 2458544515</p>
+                <div className="address-btn">
+                  <button className="btn outlined-default address-edit">
                     Edit
                   </button>
-                  <button class="btn outlined-danger address-remove">
+                  <button className="btn outlined-danger address-remove">
                     Remove
                   </button>
                 </div>
               </div>
 
-              <button class="btn default address-add">+ Add New Address</button>
+              <button className="btn default address-add">
+                + Add New Address
+              </button>
             </div>
 
             <input
@@ -89,9 +91,9 @@ export function UserProfile() {
               id="tabthree"
               onClick={() => setChecked(false)}
             />
-            <label for="tabthree">Settings</label>
-            <div class="tab">
-              <h3 class="details-header">Account Settings</h3>
+            <label htmlFor="tabthree">Settings</label>
+            <div className="tab">
+              <h3 className="details-header">Account Settings</h3>
               <button
                 className="btn danger setting-logout"
                 onClick={() => logOutHandler()}
