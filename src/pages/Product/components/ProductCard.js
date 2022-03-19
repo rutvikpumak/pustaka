@@ -52,7 +52,7 @@ export function ProductCard({ product }) {
         className="card-img"
         src={img}
         alt={name}
-        onClick={() => navigate(`/${id}`)}
+        onClick={() => navigate(`/${product.id}`)}
       />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span
@@ -61,7 +61,7 @@ export function ProductCard({ product }) {
       >
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>
-      <div className="card-info" onClick={() => navigate(`/${id}`)}>
+      <div className="card-info" onClick={() => navigate(`/${product.id}`)}>
         <div className="">
           <div className="card-title">
             <h3 className="card-title-header">{name}</h3>
