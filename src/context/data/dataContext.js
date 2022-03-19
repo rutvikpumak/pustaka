@@ -45,6 +45,7 @@ const DataProvider = ({ children }) => {
         dataDispatch: dispatch,
         cart: state.cart,
         wishlist: state.wishlist,
+        search: state.search,
         loader,
         setLoader,
       }}

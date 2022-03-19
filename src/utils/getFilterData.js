@@ -47,3 +47,11 @@ export function filterData(products, category) {
   }
   return flag ? filterProducts : products;
 }
+
+export function searchProduct(products, search) {
+  return search
+    ? products.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
+      )
+    : products;
+}

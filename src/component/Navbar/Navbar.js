@@ -1,11 +1,36 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
+import { ACTION_TYPE } from "../../utils";
 import "./Navbar.css";
 
 export default function Navbar() {
   const { token } = useAuth();
-  const { cart, wishlist } = useData();
+  const { cart, wishlist, dataDispatch, setLoader } = useData();
   const navigate = useNavigate();
+  const [input, setInput] = useState("");
+
+  const searchHandler = (e) => {
+    if (e.key === "Enter" || e.keyCode === 8 || e.target.value === "")
+      dataDispatch({
+        type: ACTION_TYPE.SEARCH,
+        payload: e.target.value,
+      });
+
+    if (e.key === "Enter") {
+      setLoader(true);
+      setTimeout(() => setLoader(false), 500);
+    }
+    navigate("/product");
+  };
+
+  useEffect(() => {
+    setInput("");
+    dataDispatch({
+      type: ACTION_TYPE.SEARCH,
+      payload: "",
+    });
+  }, [navigate]);
 
   return (
     <div className="nav-header">
@@ -19,11 +44,13 @@ export default function Navbar() {
           <div className="search-container">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input
-              type="text"
+              type="search"
               name="search"
               className="search-bar"
+              value={input}
               placeholder="Search for product"
-              id="/"
+              onKeyDown={(e) => searchHandler(e)}
+              onChange={(e) => setInput(e.target.value)}
             />
           </div>
           <ul className="navbar-right">
@@ -70,10 +97,13 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <div className="search-container search-mob">
+        <div
+          className="search-container search-mob"
+          onKeyDown={(e) => searchHandler(e)}
+        >
           <i className="fa fa-search" aria-hidden="true"></i>
           <input
-            type="text"
+            type="search"
             name="search"
             className="search-bar"
             placeholder="Search for product"

@@ -8,6 +8,7 @@ export const initialState = {
   products: [],
   cart: [],
   wishlist: [],
+  search: "",
 };
 
 export function dataReducer(state, action) {
@@ -39,7 +40,11 @@ export function dataReducer(state, action) {
         ...state,
         priceRange: action.payload,
       };
-
+    case ACTION_TYPE.SEARCH:
+      return {
+        ...state,
+        search: action.payload,
+      };
     case ACTION_TYPE.SORT_BY:
       return {
         ...state,
@@ -84,6 +89,7 @@ export function dataReducer(state, action) {
         category: state.category,
         sortByRating: "",
         priceRange: "",
+        search: "",
         products: action.payload,
         cart: state.cart,
       };
