@@ -51,10 +51,12 @@ export function ProductPage() {
           </div>
 
           <div className="single-card-right">
-            <h3 className="single-card-title-header">{product?.name}</h3>
-            <div className="star-ratings">
-              {product?.rating}
-              <i className="fa fa-star"></i>
+            <div className="single-card-title">
+              <h3 className="single-card-title-header">{product?.name}</h3>
+              <div className="star-ratings">
+                {product?.rating}
+                <i className="fa fa-star"></i>
+              </div>
             </div>
             <div className="price">
               <p className="disc-price">₹{product?.price}</p>

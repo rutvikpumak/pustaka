@@ -94,7 +94,14 @@
     .single-card {
         padding: 1rem 0.5rem 5rem 0.5rem;
         gap: 1rem;
-        box-shadow: none
+        box-shadow: none;
+        margin-top: 5rem;
+    }
+
+    .single-card-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .single-card-right .btn {
