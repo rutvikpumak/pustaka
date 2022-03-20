@@ -10,7 +10,7 @@ import {
 } from "./pages";
 import Mockman from "mockman-js";
 import Navbar from "./component/Navbar/Navbar";
-import { Login } from "./pages/Auth";
+import { Login, Signup } from "./pages/Auth";
 import { useData } from "./context";
 import { Loader } from "./component/Loader/Loader";
 
@@ -38,6 +38,7 @@ function App() {
           <Route path="/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/userProfile" element={<UserProfile />} />
         </Routes>
       </Router>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import "./Auth.css";
 import { useAuth, useData } from "../../context";
@@ -91,10 +92,12 @@ export function Login() {
             Login with Test Credentials
           </div>
 
-          <div className="auth-secondary-btn text-center">
-            Create New Account{" "}
-            <i className="fa fa-chevron-right" aria-hidden="true"></i>
-          </div>
+          <Link to="/signup">
+            <div className="auth-secondary-btn text-center">
+              Create New Account{" "}
+              <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            </div>
+          </Link>
         </form>
       </div>
     </div>

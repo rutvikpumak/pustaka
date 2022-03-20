@@ -1,61 +1,119 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Auth.css";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth, useData } from "../../context";
+
 export function Signup() {
+  const signUpFields = {
+    email: "",
+    password: "",
+    firstName: "",
+    lastName: "",
+  };
+  const [signUpForm, setSignUpForm] = useState(signUpFields);
+  const { token, signUpUser } = useAuth();
+  const { setLoader } = useData();
+  const navigate = useNavigate();
+
+  const signUpHandler = () => {
+    const { email, password, firstName, lastName } = signUpForm;
+    if (email && password && firstName && lastName !== "") {
+      (async () => {
+        signUpUser(email, password, firstName, lastName);
+      })();
+    }
+  };
+
+  const fillFormValue = (event, fieldName) => {
+    const { value } = event.target;
+    setSignUpForm((prev) => ({ ...prev, [fieldName]: value }));
+  };
+
+  if (token) {
+    setLoader(() => true);
+    setTimeout(() => {
+      navigate("/product");
+      setLoader(false);
+    }, 500);
+  }
+
   return (
-    <div class="auth-container flex-center">
-      <div class="auth-main-container flex-center">
-        <div class="auth-title">
-          <h2 class="text-center">Sign Up</h2>
+    <div className="auth-container flex-center">
+      <div className="auth-main-container flex-center">
+        <div className="auth-title">
+          <h2 className="text-center">Sign Up</h2>
         </div>
-        <div class="auth-main">
-          <div class="first-last-wrapper">
-            <div class="auth-firstname">
-              <label for="firstname">First Name</label>
-              <input placeholder="Test" class="text-input" type="text" />
+        <div className="auth-main">
+          <div className="first-last-wrapper">
+            <div className="auth-firstname">
+              <label htmlFor="firstname">First Name</label>
+              <input
+                placeholder="Test"
+                className="text-input"
+                type="text"
+                value={signUpForm.firstName}
+                onChange={(e) => fillFormValue(e, "firstName")}
+                required
+              />
             </div>
-            <div class="auth-lastname">
-              <label for="lastname">Last Name</label>
-              <input placeholder="Admin" class="text-input" type="text" />
+            <div className="auth-lastname">
+              <label htmlFor="lastname">Last Name</label>
+              <input
+                placeholder="Admin"
+                className="text-input"
+                type="text"
+                value={signUpForm.lastName}
+                onChange={(e) => fillFormValue(e, "lastName")}
+                required
+              />
             </div>
           </div>
-          <div class="auth-email">
-            <label for="mail">Email Address</label>
+          <div className="auth-email">
+            <label htmlFor="mail">Email Address</label>
             <input
               placeholder="test@gmail.com"
-              class="text-input"
+              className="text-input"
               type="text"
+              value={signUpForm.email}
+              onChange={(e) => fillFormValue(e, "email")}
+              required
             />
           </div>
-          <div class="auth-pwd">
-            <label for="pwd">Password</label>
+          <div className="auth-pwd">
+            <label htmlFor="pwd">Password</label>
             <input
               placeholder="***********"
-              class="pwd-input"
+              className="pwd-input"
               type="password"
+              value={signUpForm.password}
+              onChange={(e) => fillFormValue(e, "password")}
+              required
             />
           </div>
-          <div class="auth-checkbox">
-            <label class="select-input">
+          <div className="auth-checkbox">
+            <label className="select-input">
               <input
                 type="checkbox"
                 name="light"
-                class="checkbox-input"
+                className="checkbox-input"
                 value=""
+                required
               />
-              <span class="text">I accept all Terms & Conditions</span>
+              <span className="text">I accept all Terms & Conditions</span>
             </label>
           </div>
-          <div class="primary-btn text-center">
-            <a href="#" target="_blank" class="link-btn">
-              Create New Account
-            </a>
+          <div
+            className="primary-btn text-center"
+            onClick={() => signUpHandler()}
+          >
+            <span className="link-btn">Create New Account</span>
           </div>
-          <div class="auth-secondary-btn text-center">
-            <a href="./login.html">
+          <Link to="/login">
+            <div className="auth-secondary-btn text-center">
               Already have an account{" "}
-              <i class="fa fa-chevron-right" aria-hidden="true"></i>
-            </a>
-          </div>
+              <i className="fa fa-chevron-right" aria-hidden="true"></i>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

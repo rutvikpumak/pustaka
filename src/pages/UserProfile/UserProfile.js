@@ -16,6 +16,8 @@ export function UserProfile() {
     });
     localStorage.removeItem("login");
     localStorage.removeItem("user");
+    localStorage.removeItem("signup");
+
     setUser();
     setToken("");
     setLoader(true);
