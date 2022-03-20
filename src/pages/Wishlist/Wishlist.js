@@ -25,7 +25,7 @@ export function Wishlist() {
             </div>
           </div>
         ) : (
-          <h1>Oops ☹️ , Your Wishlist Is Empty ! </h1>
+          <h1 className="text-center"> Your Wishlist Is Empty ! ☹️</h1>
         )}
       </div>
     </div>

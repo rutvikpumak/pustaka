@@ -13,7 +13,7 @@ import {
 import "./ProductCard.css";
 
 export function ProductCard({ product }) {
-  const { dataDispatch, cart, wishlist } = useData();
+  const { dataDispatch, cart, wishlist, drawer } = useData();
   const navigate = useNavigate();
   const { token } = useAuth();
   const {
@@ -47,7 +47,7 @@ export function ProductCard({ product }) {
   };
 
   return (
-    <div key={id} className="card">
+    <div key={id} className={`card ${drawer && "disabled-click"}`}>
       <img
         className="card-img"
         src={img}
@@ -64,7 +64,9 @@ export function ProductCard({ product }) {
       <div className="card-info" onClick={() => navigate(`/${product.id}`)}>
         <div className="">
           <div className="card-title">
-            <h3 className="card-title-header">{name}</h3>
+            <h3 className="card-title-header" title={name}>
+              {name}
+            </h3>
             <div className="card-star">
               <p>{rating}</p>
               <i className="fa fa-star"></i>

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
+import { ACTION_TYPE } from "../../utils";
 import "./UserProfile.css";
 export function UserProfile() {
   const { user, setUser, setToken } = useAuth();
   const { firstName, lastName, email } = user;
   const navigate = useNavigate();
   const [check, setChecked] = useState(true);
-  const { setLoader } = useData();
+  const { setLoader, dataDispatch } = useData();
 
   const logOutHandler = () => {
+    dataDispatch({
+      type: ACTION_TYPE.LOG_OUT,
+    });
     localStorage.removeItem("login");
     localStorage.removeItem("user");
     setUser();

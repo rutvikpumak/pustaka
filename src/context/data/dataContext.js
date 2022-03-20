@@ -13,7 +13,9 @@ const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
+  const [drawer, setDrawer] = useState(false);
   const [loader, setLoader] = useState(false);
+
   useEffect(() => {
     (async () => {
       try {
@@ -48,6 +50,8 @@ const DataProvider = ({ children }) => {
         search: state.search,
         loader,
         setLoader,
+        drawer,
+        setDrawer,
       }}
     >
       {children}

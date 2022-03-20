@@ -18,7 +18,7 @@ export function Cart() {
                 <CartProduct key={product._id} product={product} />
               ))
             ) : (
-              <h1>Oops ☹️ , Your Cart Is Empty ! </h1>
+              <h1 className="text-center"> Your Cart Is Empty ! ☹️</h1>
             )}
           </div>
           {isCartHasItem && <CartPrice />}

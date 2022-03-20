@@ -1,4 +1,8 @@
 /* Product Card Style */
+.disabled-click{
+    pointer-events: none;
+    opacity: 0.7;
+}
 
 .card-img {
     width: 100%;
@@ -8,6 +12,9 @@
 
 .card-title-header {
     font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .default {
@@ -68,6 +75,9 @@
         width: 10rem;
     }
 
+    .card:hover {
+        box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
+    }
     .card-img {
         height: 10rem;
     }

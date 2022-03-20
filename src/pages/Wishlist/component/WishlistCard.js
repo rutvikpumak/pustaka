@@ -31,11 +31,14 @@ export default function WishlistCard({ product, cart, dataDispatch }) {
               </p>
             </div>
           </div>
-          <div
-            className="delete-icon"
-            onClick={() => removeFromWishlist(product._id, dataDispatch, token)}
-          >
-            <i className="fa fa-trash-o" aria-hidden="true"></i>
+          <div className="delete-icon">
+            <i
+              className="fa fa-trash-o"
+              aria-hidden="true"
+              onClick={() =>
+                removeFromWishlist(product._id, dataDispatch, token)
+              }
+            />
           </div>
         </header>
 

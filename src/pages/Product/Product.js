@@ -15,6 +15,8 @@ export function Product() {
     sortByRating,
     setLoader,
     search,
+    drawer,
+    setDrawer,
   } = useData();
 
   const searchData = searchProduct([...data], search);
@@ -34,7 +36,10 @@ export function Product() {
   return (
     <div className="product-main-container">
       <ProductFilterBar />
-      <div className="product-list-container">
+      <div
+        className="product-list-container"
+        onClick={() => drawer && setDrawer(!drawer)}
+      >
         <div className="product-list-header">
           {sortedData.length > 0 ? (
             <>

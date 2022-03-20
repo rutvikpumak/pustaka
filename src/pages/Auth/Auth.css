@@ -96,6 +96,9 @@
 }
 
 @media screen and (max-width:500px) {
+    .auth-container {
+        height: calc(100vh - 10rem);
+    }
     .auth-main-container {
         width:20rem;
         padding: 1rem;

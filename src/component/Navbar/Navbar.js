@@ -6,7 +6,8 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const { token } = useAuth();
-  const { cart, wishlist, dataDispatch, setLoader } = useData();
+  const { cart, wishlist, dataDispatch, setLoader, drawer, setDrawer } =
+    useData();
   const navigate = useNavigate();
   const [input, setInput] = useState("");
 
@@ -37,6 +38,13 @@ export default function Navbar() {
       <ul className="navbar">
         <div className="navbar-main ">
           <div className="navbar-left">
+            {window.location.href.includes("product") && (
+              <i
+                className="fa fa-bars drawer-hamberg-btn"
+                aria-hidden="true"
+                onClick={() => setDrawer(!drawer)}
+              />
+            )}
             <Link to="/home">
               <h2>Pustaka</h2>
             </Link>
@@ -59,7 +67,6 @@ export default function Navbar() {
                 token ? navigate("/userProfile") : navigate("/login")
               }
             >
-              {" "}
               <img
                 src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
                 alt="login"
@@ -72,7 +79,7 @@ export default function Navbar() {
                   token ? navigate("/wishlist") : navigate("/login")
                 }
               >
-                <i className="fa fa-heart-o "></i>
+                <i className="fa fa-heart"></i>
                 {wishlist && wishlist.length > 0 && (
                   <div className="notification-icon flex-center">
                     <span>{wishlist.length}</span>

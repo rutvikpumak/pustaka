@@ -80,6 +80,13 @@ export function dataReducer(state, action) {
     case ACTION_TYPE.REMOVE_FROM_WISHLIST:
       return { ...state, wishlist: [...action.payload] };
 
+    case ACTION_TYPE.LOG_OUT:
+      return {
+        ...state,
+        cart: [],
+        wishlist: [],
+      };
+
     case ACTION_TYPE.CLEAR_FILTER:
       for (const cat in state.category) {
         state.category[cat] = false;

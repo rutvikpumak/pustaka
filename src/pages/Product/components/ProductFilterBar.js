@@ -6,8 +6,16 @@ import { useData } from "../../../context";
 const STARS = [1, 2, 3, 4];
 
 export function ProductFilterBar() {
-  const { dataDispatch, sortBy, priceRange, sortByRating, products, category } =
-    useData();
+  const {
+    dataDispatch,
+    sortBy,
+    priceRange,
+    sortByRating,
+    products,
+    category,
+    drawer,
+    setDrawer,
+  } = useData();
 
   const changeHandler = (typeOfDispatch, typeOfAction, e) => {
     dataDispatch({
@@ -23,11 +31,14 @@ export function ProductFilterBar() {
   const isSortByPrice = (type) => sortBy && sortBy === type;
 
   return (
-    <div className={`filter-container trans-off`}>
+    <div className={`filter-container ${drawer ? "trans-on" : "trans-off"}`}>
       <div className="filter-head">
         <h4>Filters</h4>
         <p
-          onClick={() => changeHandler(ACTION_TYPE.CLEAR_FILTER, products)}
+          onClick={() => {
+            changeHandler(ACTION_TYPE.CLEAR_FILTER, products);
+            setDrawer(!drawer);
+          }}
           className="paragraph-md clr-flt-btn"
         >
           Clear
