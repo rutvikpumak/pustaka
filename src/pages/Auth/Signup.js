@@ -96,7 +96,6 @@ export function Signup() {
                 type="checkbox"
                 name="light"
                 className="checkbox-input"
-                value=""
                 required
               />
               <span className="text">I accept all Terms & Conditions</span>

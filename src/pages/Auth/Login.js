@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { useAuth, useData } from "../../context";
 
@@ -94,7 +93,7 @@ export function Login() {
 
           <Link to="/signup">
             <div className="auth-secondary-btn text-center">
-              Create New Account{" "}
+              Create New Account
               <i className="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
           </Link>
