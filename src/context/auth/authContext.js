@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { loginService } from "../../services";
+import { loginService, signUpService } from "../../services";
 
 const AuthContext = createContext();
 
@@ -30,8 +30,27 @@ const AuthProvider = ({ children }) => {
       }
     }
   };
+
+  const signUpUser = async (email, password, firstName, lastName) => {
+    try {
+      const {
+        data: { createdUser, encodedToken },
+        status,
+      } = await signUpService(email, password, firstName, lastName);
+      if (status === 201) {
+        localStorage.setItem("signup", JSON.stringify({ token: encodedToken }));
+        setToken(encodedToken);
+        localStorage.setItem("user", JSON.stringify({ user: createdUser }));
+        setUser(createdUser);
+      }
+    } catch (error) {
+      console.log("Error in login user", error);
+    }
+  };
   return (
-    <AuthContext.Provider value={{ token, setToken, loginUser, user, setUser }}>
+    <AuthContext.Provider
+      value={{ token, setToken, loginUser, signUpUser, user, setUser }}
+    >
       {children}
     </AuthContext.Provider>
   );
