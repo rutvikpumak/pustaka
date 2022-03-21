@@ -1,7 +1,14 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../../utils";
 
-export async function addToWishlist(dataDispatch, product, token) {
+export async function addToWishlist(
+  dataDispatch,
+  product,
+  token,
+  toast,
+  setWishlistBtnDisabled
+) {
+  setWishlistBtnDisabled && setWishlistBtnDisabled(true);
   try {
     const {
       data: { wishlist },
@@ -20,12 +27,15 @@ export async function addToWishlist(dataDispatch, product, token) {
       type: ACTION_TYPE.ADD_TO_WISHLIST,
       payload: wishlist,
     });
+    toast.success("Added In Wishlist !");
   } catch (error) {
+    toast.error("Something Went Wrong !");
     console.log("Error in Add To Wishlist Service", error);
   }
+  setWishlistBtnDisabled && setWishlistBtnDisabled(false);
 }
 
-export async function removeFromWishlist(id, dataDispatch, token) {
+export async function removeFromWishlist(id, dataDispatch, token, toast) {
   try {
     const {
       data: { wishlist },
@@ -38,7 +48,10 @@ export async function removeFromWishlist(id, dataDispatch, token) {
       type: ACTION_TYPE.REMOVE_FROM_WISHLIST,
       payload: wishlist,
     });
+    toast.error("Removed From Wishlist  !");
   } catch (error) {
+    toast.error("Something Went Wrong !");
+
     console.log("Error in Remove From Wishlist Service", error);
   }
 }

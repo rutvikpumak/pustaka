@@ -1,7 +1,14 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../../utils";
 
-export async function addToCart(dataDispatch, product, token) {
+export async function addToCart(
+  dataDispatch,
+  product,
+  token,
+  toast,
+  setBtnDisabled
+) {
+  setBtnDisabled && setBtnDisabled(true);
   try {
     const {
       data: { cart },
@@ -16,17 +23,20 @@ export async function addToCart(dataDispatch, product, token) {
         },
       }
     );
+    toast.success("Added In Cart !");
 
     dataDispatch({
       type: ACTION_TYPE.ADD_TO_CART,
       payload: cart,
     });
   } catch (error) {
+    toast.error("Something Went Wrong !");
     console.log("Error in addToCart service", error);
   }
+  setBtnDisabled && setBtnDisabled(false);
 }
 
-export async function removeFromCart(id, dataDispatch, token) {
+export async function removeFromCart(id, dataDispatch, token, toast) {
   try {
     const {
       data: { cart },
@@ -39,7 +49,9 @@ export async function removeFromCart(id, dataDispatch, token) {
       type: ACTION_TYPE.REMOVE_FROM_CART,
       payload: cart,
     });
+    toast.error("Removed From Cart !");
   } catch (error) {
+    toast.error("Something Went Wrong !");
     console.log("Error in updateQtyFromCart service", error);
   }
 }

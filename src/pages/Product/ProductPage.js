@@ -1,14 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ProductPage.css";
 import { useNavigate, useParams } from "react-router";
 import { useAuth, useData } from "../../context";
-import { ACTION_TYPE, calcPercentage } from "../../utils";
+import { calcPercentage } from "../../utils";
 import { addToCart, addToWishlist } from "../../services";
 import { isProductInCart, isProductInWishlist } from "../../utils/cartUtils";
+import { toast } from "react-toastify";
 
 export function ProductPage() {
   const { productId } = useParams();
   const navigate = useNavigate();
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [btnWishlistDisabled, setWishlistBtnDisabled] = useState(false);
   const { token } = useAuth();
   const { products, cart, dataDispatch, wishlist, setLoader } = useData();
 
@@ -23,7 +26,7 @@ export function ProductPage() {
     token
       ? isInCart
         ? navigate("/cart")
-        : addToCart(dataDispatch, product, token)
+        : addToCart(dataDispatch, product, token, toast, setBtnDisabled)
       : navigate("/login");
   };
 
@@ -31,7 +34,13 @@ export function ProductPage() {
     token
       ? isInWishlist
         ? navigate("/wishlist")
-        : addToWishlist(dataDispatch, product, token)
+        : addToWishlist(
+            dataDispatch,
+            product,
+            token,
+            toast,
+            setWishlistBtnDisabled
+          )
       : navigate("/login");
   };
 
@@ -97,7 +106,11 @@ export function ProductPage() {
               </li>
             </div>
 
-            <button className="btn default " onClick={() => addToCartHandler()}>
+            <button
+              className={`btn default`}
+              onClick={() => addToCartHandler()}
+              disabled={btnDisabled}
+            >
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
               {isInCart ? "Go to Cart" : "Add to Cart"}
             </button>
@@ -105,6 +118,7 @@ export function ProductPage() {
             <button
               className="btn outlined-default  wishlist-btn"
               onClick={() => addToWishlistHandler()}
+              disabled={btnWishlistDisabled}
             >
               <i className="fa fa-heart-o" aria-hidden="true"></i>{" "}
               {isInWishlist ? "Go to Wishlist" : "Add to Wishlist"}
