@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth, useData } from "../../../context";
 import {
@@ -11,9 +12,12 @@ import {
   isProductInWishlist,
 } from "../../../utils/cartUtils";
 import "./ProductCard.css";
+import { toast } from "react-toastify";
 
 export function ProductCard({ product }) {
   const { dataDispatch, cart, wishlist, drawer } = useData();
+  const [btnDisabled, setBtnDisabled] = useState(false);
+
   const navigate = useNavigate();
   const { token } = useAuth();
   const {
@@ -34,15 +38,15 @@ export function ProductCard({ product }) {
     token
       ? isInCart
         ? navigate("/cart")
-        : addToCart(dataDispatch, product, token)
+        : addToCart(dataDispatch, product, token, toast, setBtnDisabled)
       : navigate("/login");
   };
 
   const wishlistHandler = () => {
     token
       ? isInWishlist
-        ? removeFromWishlist(id, dataDispatch, token)
-        : addToWishlist(dataDispatch, product, token)
+        ? removeFromWishlist(id, dataDispatch, token, toast)
+        : addToWishlist(dataDispatch, product, token, toast)
       : navigate("/login");
   };
 
@@ -56,8 +60,10 @@ export function ProductCard({ product }) {
       />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span
+        role="button"
         className={`wishlist-icon ${isInWishlist ? `wishlist-toggle` : ``}`}
         onClick={() => wishlistHandler()}
+        disabled={true}
       >
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>
@@ -85,6 +91,7 @@ export function ProductCard({ product }) {
       <button
         className="btn default add-cart"
         onClick={() => addToCartHandler()}
+        disabled={btnDisabled}
       >
         <i className="fa fa-shopping-cart"></i>
         {isInCart ? "Go to Cart" : "Add to Cart"}

@@ -27,3 +27,6 @@ li {
   list-style: none;
 }
 
+button:disabled{
+  background:var(--lightGrey)
+}

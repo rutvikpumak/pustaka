@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../../context";
+import { toast } from "react-toastify";
 import { calcPercentage, isProductInWishlist } from "../../../utils/cartUtils";
 import {
   addToWishlist,
@@ -19,8 +20,8 @@ export function CartProduct({ product }) {
     updateQtyFromCart(product._id, dataDispatch, token, type);
 
   const moveToWishlistHandler = () => {
-    addToWishlist(dataDispatch, product, token);
-    removeFromCart(product._id, dataDispatch, token);
+    addToWishlist(dataDispatch, product, token, toast);
+    removeFromCart(product._id, dataDispatch, token, toast);
   };
 
   return (
@@ -49,9 +50,7 @@ export function CartProduct({ product }) {
           <div className="qty">
             <button
               className="minus"
-              onClick={() => {
-                product.qty > 1 && cartClickHandler("DEC_QTY");
-              }}
+              onClick={() => product.qty > 1 && cartClickHandler("DEC_QTY")}
               disabled={product.qty > 1 ? false : true}
             >
               -
@@ -67,7 +66,7 @@ export function CartProduct({ product }) {
         <button
           className="remove-btn"
           onClick={() => {
-            removeFromCart(product._id, dataDispatch, token);
+            removeFromCart(product._id, dataDispatch, token, toast);
           }}
         >
           REMOVE

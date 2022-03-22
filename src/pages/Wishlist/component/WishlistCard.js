@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context";
 import { addToCart, removeFromWishlist } from "../../../services";
 import { calcPercentage, isProductInCart } from "../../../utils/cartUtils";
+import { toast } from "react-toastify";
 
 export default function WishlistCard({ product, cart, dataDispatch }) {
   const { token } = useAuth();
@@ -10,8 +11,8 @@ export default function WishlistCard({ product, cart, dataDispatch }) {
   const isInCart = isProductInCart(cart, product._id);
 
   const moveToCartHandler = () => {
-    addToCart(dataDispatch, product, token);
-    removeFromWishlist(product._id, dataDispatch, token);
+    addToCart(dataDispatch, product, token, toast);
+    removeFromWishlist(product._id, dataDispatch, token, toast);
   };
 
   return (
@@ -36,7 +37,7 @@ export default function WishlistCard({ product, cart, dataDispatch }) {
               className="fa fa-trash-o"
               aria-hidden="true"
               onClick={() =>
-                removeFromWishlist(product._id, dataDispatch, token)
+                removeFromWishlist(product._id, dataDispatch, token, toast)
               }
             />
           </div>
