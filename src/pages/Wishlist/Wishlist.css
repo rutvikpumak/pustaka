@@ -16,7 +16,7 @@
 }
 
 .wishlist-item {
-    width: 28.5rem;
+    width: 35rem;
     padding: 1.5rem 0;
     display: flex;
     border-bottom: 1px solid var(--lightGrey);
@@ -30,7 +30,7 @@
 .wishlist img {
     object-fit: contain;
     width: 150px;
-    height: 130px;
+    height: 180px;
     margin-right: 1rem;
 }
 
@@ -62,5 +62,8 @@
 @media screen and (max-width:500px) {
     .wishlist-item {
         width: inherit;
+    }
+    .wishlist img {
+        height: 130px;
     }
 }

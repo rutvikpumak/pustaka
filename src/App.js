@@ -13,16 +13,8 @@ import Navbar from "./component/Navbar/Navbar";
 import { Login, Signup } from "./pages/Auth";
 import { useData } from "./context";
 import { Loader } from "./component/Loader/Loader";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-function MockAPI() {
-  return (
-    <div className="MockAPI">
-      <Mockman />
-    </div>
-  );
-}
 
 function App() {
   const { loader } = useData();

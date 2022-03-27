@@ -1,8 +1,4 @@
 /* Product Card Style */
-.disabled-click{
-    pointer-events: none;
-    opacity: 0.7;
-}
 
 .card-img {
     width: 100%;
@@ -68,6 +64,13 @@
 
 .card-description {
     text-align: left;
+}
+
+@media screen and (max-width: 950px) {
+    .disabled-click {
+        pointer-events: none;
+        opacity: 0.7;
+    }
 }
 
 @media screen and (max-width: 630px) {

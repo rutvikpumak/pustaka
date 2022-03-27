@@ -35,7 +35,7 @@ export function CartProduct({ product }) {
         <div className="card-info">
           <div className="card-title">
             <div>
-              <h4>{product.name}</h4>
+              <h3>{product.name}</h3>
               <p className="card-description">{product.author}</p>
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 .card:hover {
     box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
 }
@@ -19,9 +18,14 @@
     gap: 5rem;
 }
 
+.horizontal-img {
+    width: 37%;
+    height: 12rem;
+}
+
 .horizontal-container {
     margin-bottom: 3rem;
-    width: 25rem;
+    width: 30rem;
 }
 
 .horizontal-btn button {
@@ -84,6 +88,10 @@
         gap: 1rem;
     }
 
+    .cart-main-container {
+        gap: 2rem;
+    }
+
     .horizontal-container,
     .price-details {
         width: 20rem;
@@ -94,4 +102,12 @@
         gap: 0rem;
     }
 
+    .horizontal-img {
+        width: 35%;
+        height: 10rem;
+    }
+
+    .horizontal-btn {
+        justify-content: space-between;
+    }
 }

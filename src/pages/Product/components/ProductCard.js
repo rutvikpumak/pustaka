@@ -93,7 +93,7 @@ export function ProductCard({ product }) {
         onClick={() => addToCartHandler()}
         disabled={btnDisabled}
       >
-        <i className="fa fa-shopping-cart"></i>
+        <i className="fa fa-shopping-cart"></i>{" "}
         {isInCart ? "Go to Cart" : "Add to Cart"}
       </button>
     </div>
