@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Home.css";
+import { ACTION_TYPE } from "../../utils";
+import { useData } from "../../context";
 
 export function Home() {
   const [categories, setCategories] = useState([]);
-
+  const navigate = useNavigate();
+  const { dataDispatch } = useData();
   useEffect(() => {
     axios
       .get("/api/categories")
@@ -13,6 +16,13 @@ export function Home() {
       .catch((error) => console.log(error));
   }, []);
 
+  const categoryHandler = (categoryName) => {
+    dataDispatch({
+      type: ACTION_TYPE.CATEGORY,
+      payload: { [categoryName]: true },
+    });
+    navigate("/product");
+  };
   return (
     <>
       <div className="home-container">
@@ -46,12 +56,16 @@ export function Home() {
             </div>
             <div className="category-row">
               {categories &&
-                categories.map((ele) => {
+                categories.map(({ _id, categoryName, description }) => {
                   return (
-                    <div className="box" key={ele._id}>
+                    <div
+                      className="box"
+                      key={_id}
+                      onClick={() => categoryHandler(categoryName)}
+                    >
                       <div className="detail-box text-center">
-                        <h4>{ele.categoryName}</h4>
-                        <p className="paragraph-sm">{ele.description}</p>
+                        <h4>{categoryName}</h4>
+                        <p className="paragraph-sm">{description}</p>
                       </div>
                     </div>
                   );
