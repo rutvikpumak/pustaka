@@ -48,6 +48,7 @@ const DataProvider = ({ children }) => {
         cart: state.cart,
         wishlist: state.wishlist,
         search: state.search,
+        address: state.address,
         loader,
         setLoader,
         drawer,

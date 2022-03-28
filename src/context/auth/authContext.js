@@ -1,5 +1,8 @@
-import { createContext, useContext, useState } from "react";
+import axios from "axios";
+import { createContext, useContext, useState, useEffect } from "react";
 import { loginService, signUpService } from "../../services";
+import { ACTION_TYPE } from "../../utils";
+import { useData } from "../data/dataContext";
 
 const AuthContext = createContext();
 
@@ -8,6 +11,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token);
   const localStorageUser = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(localStorageUser?.user);
+  const { dataDispatch } = useData();
 
   const loginUser = async (email, password) => {
     if (email && password !== "") {
@@ -47,6 +51,27 @@ const AuthProvider = ({ children }) => {
       console.log("Error in login user", error);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      (async () => {
+        try {
+          const { data: address } = await axios.get("api/user/address", {
+            headers: {
+              authorization: token,
+            },
+          });
+          dataDispatch({
+            type: ACTION_TYPE.INITIALIZE_ADDRESS,
+            payload: address.address,
+          });
+        } catch (error) {
+          console.log("Error in Add To Address Service");
+        }
+      })();
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{ token, setToken, loginUser, signUpUser, user, setUser }}

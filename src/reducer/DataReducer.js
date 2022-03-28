@@ -8,6 +8,7 @@ export const initialState = {
   products: [],
   cart: [],
   wishlist: [],
+  address: [],
   search: "",
 };
 
@@ -34,7 +35,11 @@ export function dataReducer(state, action) {
         ...state,
         products: action.payload,
       };
-
+    case ACTION_TYPE.INITIALIZE_ADDRESS:
+      return {
+        ...state,
+        address: action.payload,
+      };
     case ACTION_TYPE.PRICE_RANGE:
       return {
         ...state,
@@ -79,7 +84,8 @@ export function dataReducer(state, action) {
 
     case ACTION_TYPE.REMOVE_FROM_WISHLIST:
       return { ...state, wishlist: [...action.payload] };
-
+    case ACTION_TYPE.ADDRESS:
+      return { ...state, address: [...action.payload] };
     case ACTION_TYPE.LOG_OUT:
       return {
         ...state,
