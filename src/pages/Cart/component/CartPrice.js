@@ -5,7 +5,7 @@ import { getPriceDetails } from "../../../utils";
 
 export function CartPrice({ setCouponModal }) {
   const { cart } = useData();
-  const { couponValue } = useOrder();
+  const { couponValue, setCouponValue } = useOrder();
   const { price, discount } = getPriceDetails(cart);
   const coupon = price
     ? Math.abs(
@@ -52,8 +52,16 @@ export function CartPrice({ setCouponModal }) {
           </ul>
           {coupon !== 0 && (
             <ul className="coupon-msg">
-              <p>Applied</p>
-              <p>{couponValue.couponName}</p>
+              <p>
+                <img src="https://cdn-icons-png.flaticon.com/512/726/726448.png" />
+                {couponValue.couponName}
+              </p>
+              <p
+                className="remove-coupon"
+                onClick={() => setCouponValue({ couponName: "", value: 0 })}
+              >
+                ❌
+              </p>
             </ul>
           )}
         </li>
