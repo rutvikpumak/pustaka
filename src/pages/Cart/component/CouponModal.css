@@ -1,0 +1,42 @@
+.modal-wrapper {
+    background: #342e2ebf;
+    width: 100vw;
+    position: fixed;
+    height: 100vh;
+    top:0;
+    z-index: 8888;
+}
+.modal{
+    padding:1rem 2rem
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}
+.coupon-option{
+    border: 1px solid grey;
+    padding:0.5rem 4rem 0.5rem 1rem;
+    margin:1rem 0
+}
+.apply-btn{
+    font-family: inherit;
+    width: 100%;
+    font-size: 0.8rem;
+}
+.apply-btn:hover{
+    opacity: 0.8;
+}
+
+.display{
+    display: flex;
+}
+
+.display-none{
+    display: none;
+}
+
+.fa-times{
+    font-size: 1.2rem;
+    cursor: pointer;
+}

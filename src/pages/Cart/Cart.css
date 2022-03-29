@@ -80,6 +80,9 @@
     border-bottom: 1px solid var(--lightGrey);
 }
 
+.save-msg,.coupon-msg{
+    color:rgb(18, 173, 18);
+}
 
 @media screen and (max-width:500px) {
 
