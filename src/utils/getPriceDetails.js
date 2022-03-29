@@ -8,8 +8,6 @@ function getPriceDetails(myCart) {
     {
       price: 0,
       discount: 0,
-      coupon: 0,
-      total: 0,
     }
   );
 }
