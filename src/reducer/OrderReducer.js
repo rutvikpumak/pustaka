@@ -15,14 +15,7 @@ export const orderReducer = (state, action) => {
   switch (action.type) {
     case ACTION_TYPE.PRICE_DETAILS:
       const { priceOnMRP, discountOnMRP, couponApplied } = action.payload;
-      console.log({
-        ...state,
-        priceDetails: {
-          ...state.priceDetails,
-          price: price,
-          discount: discount,
-        },
-      });
+
       return {
         ...state,
         priceDetails: {
