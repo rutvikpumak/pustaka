@@ -6,3 +6,8 @@ export {
   removeFromCart,
   updateQtyFromCart,
 } from "./cart/cartServices";
+export {
+  addToAddress,
+  removeFromAddress,
+  updateFromAddress,
+} from "./address/addressServices";

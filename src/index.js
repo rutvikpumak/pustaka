@@ -9,11 +9,11 @@ makeServer();
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <DataProvider>
+    <DataProvider>
+      <AuthProvider>
         <App />
-      </DataProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </DataProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

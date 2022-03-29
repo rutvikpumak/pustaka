@@ -1,14 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
+import { removeFromAddress } from "../../services";
 import { ACTION_TYPE } from "../../utils";
+import { AddressForm } from "./component/AddressForm";
 import "./UserProfile.css";
+
 export function UserProfile() {
-  const { user, setUser, setToken } = useAuth();
-  const { firstName, lastName, email } = user;
   const navigate = useNavigate();
+  const { user, setUser, token, setToken } = useAuth();
+  const { setLoader, dataDispatch, address } = useData();
+  const { firstName, lastName, email } = user;
   const [check, setChecked] = useState(true);
-  const { setLoader, dataDispatch } = useData();
+  const formValue = {
+    name: "",
+    street: "",
+    city: "",
+    state: "",
+    country: "",
+    zipCode: "",
+    mobile: "",
+  };
+  const [formDisplay, setFormDisplay] = useState(false);
+  const [addressForm, setAddForm] = useState(formValue);
 
   const logOutHandler = () => {
     dataDispatch({
@@ -26,6 +41,30 @@ export function UserProfile() {
     }, 500);
     navigate("/home");
   };
+
+  const editAddress = (
+    _id,
+    name,
+    street,
+    city,
+    state,
+    country,
+    zipCode,
+    mobile
+  ) => {
+    setFormDisplay(true);
+    setAddForm((form) => ({
+      ...form,
+      _id,
+      name,
+      street,
+      city,
+      state,
+      country,
+      zipCode,
+      mobile,
+    }));
+  };
   return (
     <div className="profile-container">
       <div className="profile-main-container">
@@ -38,7 +77,7 @@ export function UserProfile() {
               className="tabs"
               id="profile"
               checked={check}
-              onClick={() => setChecked(true)}
+              onChange={() => setChecked(true)}
             />
             <label htmlFor="profile">Profile</label>
             <div className="tab">
@@ -78,31 +117,86 @@ export function UserProfile() {
             <div className="tab">
               <h3 className="details-header">My Addresses</h3>
 
-              <div className="address-container">
-                <p className="paragraph-md">John Cena</p>
-                <p className="paragraph-sm">
-                  #1/4 , 100ft Ring Road, Karve Nagar, Bangalore, Maharashtra
-                  560078
-                </p>
-                <p className="paragraph-sm">India.</p>
-                <p className="paragraph-sm">Phone Number : 2458544515</p>
-                <div className="address-btn">
-                  <button className="btn outlined-default address-edit">
-                    Edit
-                  </button>
-                  <button className="btn outlined-danger address-remove">
-                    Remove
-                  </button>
-                </div>
-              </div>
+              {address &&
+                address.map(
+                  ({
+                    _id,
+                    name,
+                    street,
+                    city,
+                    state,
+                    country,
+                    zipCode,
+                    mobile,
+                  }) => (
+                    <div className="address-container">
+                      <p className="paragraph-md">{name}</p>
+                      <div>
+                        <p className="paragraph-sm">
+                          {street}, {city},{state}. {zipCode}
+                        </p>
+                        <p className="paragraph-sm">{country}.</p>
+                        <p className="paragraph-sm">Phone Number : {mobile}</p>
+                      </div>
+                      <div className="address-btn">
+                        <button
+                          className="btn outlined-default address-edit"
+                          onClick={() =>
+                            editAddress(
+                              _id,
+                              name,
+                              street,
+                              city,
+                              state,
+                              country,
+                              zipCode,
+                              mobile
+                            )
+                          }
+                        >
+                          Edit
+                        </button>
+                        <button
+                          className="btn outlined-danger address-remove"
+                          onClick={() =>
+                            removeFromAddress(
+                              dataDispatch,
+                              _id,
+                              token,
+                              toast,
+                              setFormDisplay
+                            )
+                          }
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </div>
+                  )
+                )}
 
-              <button className="btn default address-add">
+              <button
+                onClick={() => {
+                  setFormDisplay(true);
+                  setAddForm(formValue);
+                }}
+                className={`btn default address-add ${
+                  formDisplay && "displayNone"
+                }`}
+              >
                 + Add New Address
               </button>
             </div>
           </div>
         </div>
       </div>
+      <AddressForm
+        addressForm={addressForm}
+        setAddForm={setAddForm}
+        formDisplay={formDisplay}
+        setFormDisplay={setFormDisplay}
+        formValue={formValue}
+      />
     </div>
   );
 }

@@ -83,6 +83,14 @@
   gap: 10px;
 }
 
+.address-container {
+  line-height: 1.3rem;
+}
+
+.address-container>p {
+  font-weight: var(--font-semiBold);
+}
+
 .address-btn .btn,
 .address-form-btn .btn {
   font-size: 0.9rem;
@@ -99,14 +107,14 @@
 /* Address Form */
 
 .address-form-container {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: rgba(255, 255, 255, 0.75);
+  width: 100%;
   position: absolute;
+  top: 0;
+  height: 100%;
   z-index: 2;
-  margin-top: 4rem;
   transition: background ease 0.3s;
+  ;
 }
 
 .address-form-input {
@@ -148,7 +156,13 @@
   font-size: 1rem;
 }
 
+.displayNone {
+  display: none;
+}
 
+.displayFlex {
+  display: flex;
+}
 @media screen and (max-width:500px) {
   .tabs label {
     padding: 0.5rem 1rem;
