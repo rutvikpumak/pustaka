@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
 import { useOrder } from "../../context/order/orderContext";
 import { toast } from "react-toastify";
@@ -6,7 +7,8 @@ import { clearCart } from "../../services/cart/cartServices";
 import { ACTION_TYPE } from "../../utils";
 
 export function CheckoutPrice({ setMsg }) {
-  const { cart, dataDispatch } = useData();
+  const navigate = useNavigate();
+  const { cart, dataDispatch, address } = useData();
   const { couponValue, priceDetails, orderAddress, dispatch } = useOrder();
   const {
     user: { firstName, lastName, email },
@@ -61,6 +63,17 @@ export function CheckoutPrice({ setMsg }) {
     };
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
+  };
+
+  const placeOrderHandler = () => {
+    if (address.length === 0) {
+      toast.error("Please Add Address");
+      setTimeout(() => {
+        navigate("/userProfile");
+      }, 1500);
+    } else {
+      !orderAddress.name ? toast.error("Please Select Address") : displayRazorpay();
+    }
   };
   return (
     <div className="checkout-details">
@@ -133,12 +146,7 @@ export function CheckoutPrice({ setMsg }) {
           </div>
         </div>
       )}
-      <div
-        className="primary-btn text-center"
-        onClick={() =>
-          !orderAddress.name ? toast.error("Please Select Address") : displayRazorpay()
-        }
-      >
+      <div className="primary-btn text-center" onClick={() => placeOrderHandler()}>
         <button className="link-btn checkout-btn">Place Order</button>
       </div>
     </div>

@@ -114,6 +114,7 @@ export function dataReducer(state, action) {
         ...state,
         cart: [],
         wishlist: [],
+        address: [],
       };
 
     case ACTION_TYPE.CLEAR_FILTER:
