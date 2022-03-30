@@ -1,0 +1,120 @@
+.checkout-container {
+    flex-grow: 1;
+}
+
+.checkout-main-container {
+    padding-top: 3rem;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.checkout-manage {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+}
+
+.checkout-manage-item {
+    box-shadow: rgb(90 90 90 / 35%) 0px 5px 15px;
+    height: fit-content;
+    width: 30rem;
+}
+
+.address-checkout-container {
+    padding: 1rem 4rem 1rem 2rem;
+    border-bottom: 1px solid var(--lightGrey);
+}
+
+.deliver-container {
+    padding: 1rem 0rem;
+}
+
+.checkout-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
+    padding: 2rem;
+    height: fit-content;
+    margin-bottom: 2rem;
+    width: 30rem;
+}
+
+.border-header {
+    border-bottom: 1px solid var(--lightGrey);
+    border-top: 1px solid var(--lightGrey);
+    padding: 0.5rem 0;
+}
+
+.checkout-calculate {
+    padding: 0.5rem 0;
+}
+
+.checkout-calculate ul {
+    margin-top: 0.5rem;
+}
+
+.checkout-details ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+    align-items: center;
+}
+
+.checkout-btn {
+    padding: 0
+}
+
+.radio-input {
+    margin-right: 10px;
+}
+
+.address-details-checkout {
+    margin-top: 0.5rem;
+}
+
+.checkout-item-header>p {
+    font-weight: var(--font-semiBold);
+    padding-bottom: 1rem;
+}
+
+.order-header {
+    font-weight: var(--font-semiBold);
+    padding-bottom: 1rem;
+}
+
+@media screen and (max-width:950px) {
+    .checkout-manage {
+        flex-wrap: wrap;
+    }
+
+    .checkout-main-container {
+        padding: 3rem
+    }
+}
+
+@media screen and (max-width:500px) {
+
+    .checkout-manage {
+        justify-content: center;
+        gap: 1rem;
+        width: 100%;
+    }
+
+    .checkout-main-container {
+        gap: 2rem;
+        padding: 1rem;
+        width: 100%;
+    }
+
+    .horizontal-container,
+    .checkout--details {
+        width: 20rem;
+        margin-bottom: 2rem;
+    }
+
+    .checkout-details ul {
+        gap: 0rem;
+    }
+
+}

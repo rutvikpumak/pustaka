@@ -7,6 +7,7 @@ import {
   ProductPage,
   UserProfile,
   Wishlist,
+  Checkout,
 } from "./pages";
 import Mockman from "mockman-js";
 import Navbar from "./component/Navbar/Navbar";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/product" element={<Product />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/:productId" element={<ProductPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<Login />} />

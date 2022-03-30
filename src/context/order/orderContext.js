@@ -1,11 +1,4 @@
-import axios from "axios";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 import { orderState, orderReducer } from "../../reducer/OrderReducer";
 
 const OrderContext = createContext();
@@ -18,6 +11,7 @@ const OrderProvider = ({ children }) => {
     <OrderContext.Provider
       value={{
         priceDetails: state.priceDetails,
+        orderAddress: state.orderAddress,
         dispatch,
         couponValue,
         setCouponValue,
