@@ -1,6 +1,39 @@
-## Pustaka E-Commerce  
+<div align="center">
+  <img src="src/assets/logo.png" height="100" width="100" alt="logo"/>
+  
+# Pustaka
+  An Ecommerce website for Books 
+</div>
 
-This folder contains the Mock Backend created for E-Commerce App. It contains different API end-points and database configuration for building E-Commerce; so that you can focus on building Frontend. 
+## **How to install and run locally ?**
 
+```
+$ git clone https://github.com/rutvikpumak/pustaka.git
+$ cd pustaka
+$ npm install
+$ npm start
+```
+## **Features -**
 
- 
+- Home page
+- Product listing page
+- Filter and sort products
+- Search product
+- Individual product page
+- Cart Managment
+- Wishlist managment
+- Address Managment
+- Checkout page
+- Payment gateway integration
+- Authentication:
+  - User Signup
+  - User Login
+ - Fully Responsive
+
+## **Built with -**
+
+- React JS
+- React Context API + useReducer
+- React Router v6
+- Vanilla CSS integrated with BoostMat UI Component Library
+- Razorpay payment gateway
