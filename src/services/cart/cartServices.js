@@ -56,6 +56,22 @@ export async function removeFromCart(id, dataDispatch, token, toast) {
   }
 }
 
+export async function clearCart(dataDispatch, cart, token) {
+  try {
+    for (const item of cart) {
+      await axios.delete(`api/user/cart/${item._id}`, {
+        headers: {
+          authorization: token,
+        },
+      });
+    }
+    dataDispatch({
+      type: ACTION_TYPE.CLEAR_CART,
+    });
+  } catch (error) {
+    console.log("Error in clear cart service", error);
+  }
+}
 export async function updateQtyFromCart(id, dataDispatch, token, actionType) {
   try {
     const {

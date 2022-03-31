@@ -21,13 +21,14 @@ const AuthProvider = ({ children }) => {
           status,
         } = await loginService(email, password);
         if (status === 200) {
-          localStorage.setItem(
-            "login",
-            JSON.stringify({ token: encodedToken })
-          );
+          localStorage.setItem("login", JSON.stringify({ token: encodedToken }));
           setToken(encodedToken);
           localStorage.setItem("user", JSON.stringify({ user: foundUser }));
           setUser(foundUser);
+          dataDispatch({
+            type: ACTION_TYPE.INITIALIZE_ADDRESS,
+            payload: foundUser.address,
+          });
         }
       } catch (error) {
         console.log("Error in login user", error);
@@ -46,36 +47,38 @@ const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         localStorage.setItem("user", JSON.stringify({ user: createdUser }));
         setUser(createdUser);
+        dataDispatch({
+          type: ACTION_TYPE.INITIALIZE_ADDRESS,
+          payload: foundUser.address,
+        });
       }
     } catch (error) {
       console.log("Error in login user", error);
     }
   };
 
-  useEffect(() => {
-    if (token) {
-      (async () => {
-        try {
-          const { data: address } = await axios.get("api/user/address", {
-            headers: {
-              authorization: token,
-            },
-          });
-          dataDispatch({
-            type: ACTION_TYPE.INITIALIZE_ADDRESS,
-            payload: address.address,
-          });
-        } catch (error) {
-          console.log("Error in Add To Address Service");
-        }
-      })();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (token) {
+  //     (async () => {
+  //       try {
+  //         const { data: address } = await axios.get("api/user/address", {
+  //           headers: {
+  //             authorization: token,
+  //           },
+  //         });
+  //         dataDispatch({
+  //           type: ACTION_TYPE.INITIALIZE_ADDRESS,
+  //           payload: address.address,
+  //         });
+  //       } catch (error) {
+  //         console.log("Error in Add To Address Service");
+  //       }
+  //     })();
+  //   }
+  // }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ token, setToken, loginUser, signUpUser, user, setUser }}
-    >
+    <AuthContext.Provider value={{ token, setToken, loginUser, signUpUser, user, setUser }}>
       {children}
     </AuthContext.Provider>
   );

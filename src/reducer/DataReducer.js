@@ -71,26 +71,50 @@ export function dataReducer(state, action) {
         },
       };
     case ACTION_TYPE.ADD_TO_CART:
-      return { ...state, cart: [...action.payload] };
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
 
     case ACTION_TYPE.REMOVE_FROM_CART:
-      return { ...state, cart: [...action.payload] };
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
 
     case ACTION_TYPE.UPDATE_QTY_IN_CART:
-      return { ...state, cart: [...action.payload] };
+      return {
+        ...state,
+        cart: [...action.payload],
+      };
+    case ACTION_TYPE.CLEAR_CART:
+      return {
+        ...state,
+        cart: [],
+      };
 
     case ACTION_TYPE.ADD_TO_WISHLIST:
-      return { ...state, wishlist: [...action.payload] };
+      return {
+        ...state,
+        wishlist: [...action.payload],
+      };
 
     case ACTION_TYPE.REMOVE_FROM_WISHLIST:
-      return { ...state, wishlist: [...action.payload] };
+      return {
+        ...state,
+        wishlist: [...action.payload],
+      };
     case ACTION_TYPE.ADDRESS:
-      return { ...state, address: [...action.payload] };
+      return {
+        ...state,
+        address: [...action.payload],
+      };
     case ACTION_TYPE.LOG_OUT:
       return {
         ...state,
         cart: [],
         wishlist: [],
+        address: [],
       };
 
     case ACTION_TYPE.CLEAR_FILTER:

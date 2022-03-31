@@ -42,16 +42,7 @@ export function UserProfile() {
     navigate("/home");
   };
 
-  const editAddress = (
-    _id,
-    name,
-    street,
-    city,
-    state,
-    country,
-    zipCode,
-    mobile
-  ) => {
+  const editAddress = (_id, name, street, city, state, country, zipCode, mobile) => {
     setFormDisplay(true);
     setAddForm((form) => ({
       ...form,
@@ -97,10 +88,7 @@ export function UserProfile() {
               </div>
               <div className="">
                 <h3 className="details-header">Account Settings</h3>
-                <button
-                  className="btn danger setting-logout"
-                  onClick={() => logOutHandler()}
-                >
+                <button className="btn danger setting-logout" onClick={() => logOutHandler()}>
                   Log Out
                 </button>
               </div>
@@ -118,71 +106,43 @@ export function UserProfile() {
               <h3 className="details-header">My Addresses</h3>
 
               {address &&
-                address.map(
-                  ({
-                    _id,
-                    name,
-                    street,
-                    city,
-                    state,
-                    country,
-                    zipCode,
-                    mobile,
-                  }) => (
-                    <div className="address-container">
-                      <p className="paragraph-md">{name}</p>
-                      <div>
-                        <p className="paragraph-sm">
-                          {street}, {city},{state}. {zipCode}
-                        </p>
-                        <p className="paragraph-sm">{country}.</p>
-                        <p className="paragraph-sm">Phone Number : {mobile}</p>
-                      </div>
-                      <div className="address-btn">
-                        <button
-                          className="btn outlined-default address-edit"
-                          onClick={() =>
-                            editAddress(
-                              _id,
-                              name,
-                              street,
-                              city,
-                              state,
-                              country,
-                              zipCode,
-                              mobile
-                            )
-                          }
-                        >
-                          Edit
-                        </button>
-                        <button
-                          className="btn outlined-danger address-remove"
-                          onClick={() =>
-                            removeFromAddress(
-                              dataDispatch,
-                              _id,
-                              token,
-                              toast,
-                              setFormDisplay
-                            )
-                          }
-                        >
-                          Remove
-                        </button>
-                      </div>
+                address.map(({ _id, name, street, city, state, country, zipCode, mobile }) => (
+                  <div className="address-container">
+                    <p className="paragraph-md">{name}</p>
+                    <div>
+                      <p className="paragraph-sm">
+                        {street}, {city},{state}. {zipCode}
+                      </p>
+                      <p className="paragraph-sm">{country}.</p>
+                      <p className="paragraph-sm">Phone Number : {mobile}</p>
                     </div>
-                  )
-                )}
+                    <div className="address-btn">
+                      <button
+                        className="btn outlined-default address-edit"
+                        onClick={() =>
+                          editAddress(_id, name, street, city, state, country, zipCode, mobile)
+                        }
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn outlined-danger address-remove"
+                        onClick={() =>
+                          removeFromAddress(dataDispatch, _id, token, toast, setFormDisplay)
+                        }
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                ))}
 
               <button
                 onClick={() => {
                   setFormDisplay(true);
                   setAddForm(formValue);
                 }}
-                className={`btn default address-add ${
-                  formDisplay && "displayNone"
-                }`}
+                className={`btn default address-add ${formDisplay && "displayNone"}`}
               >
                 + Add New Address
               </button>

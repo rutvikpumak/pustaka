@@ -95,8 +95,12 @@
     width: 17px;
 }
 
-.remove-coupon{
+.remove-coupon {
     cursor: pointer;
+}
+
+.checkout-btn {
+    padding: 0
 }
 
 @media screen and (max-width:500px) {
