@@ -9,7 +9,7 @@ import { ACTION_TYPE } from "../../utils";
 export function CheckoutPrice({ setMsg }) {
   const navigate = useNavigate();
   const { cart, dataDispatch, address } = useData();
-  const { couponValue, priceDetails, orderAddress, dispatch } = useOrder();
+  const { couponValue, priceDetails, orderAddress, dispatch, order, setOrder } = useOrder();
   const {
     user: { firstName, lastName, email },
     token,
@@ -48,6 +48,13 @@ export function CheckoutPrice({ setMsg }) {
       description: "Thank you for shopping with us",
       image: "https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true",
       handler: function (response) {
+        const orderData = {
+          products: [...cart],
+          amount: totalAmt,
+          paymentId: response.razorpay_payment_id,
+          delivery: orderAddress,
+        };
+        setOrder({ ...orderData });
         clearCart(dataDispatch, cart, token);
         dispatch({ type: ACTION_TYPE.RESET_PRICE });
         setMsg(true);
@@ -69,7 +76,7 @@ export function CheckoutPrice({ setMsg }) {
     if (address.length === 0) {
       toast.error("Please Add Address");
       setTimeout(() => {
-        navigate("/userProfile");
+        navigate("/user_profile");
       }, 1500);
     } else {
       !orderAddress.name ? toast.error("Please Select Address") : displayRazorpay();

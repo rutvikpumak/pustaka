@@ -57,25 +57,14 @@ const AuthProvider = ({ children }) => {
     }
   };
 
-  // useEffect(() => {
-  //   if (token) {
-  //     (async () => {
-  //       try {
-  //         const { data: address } = await axios.get("api/user/address", {
-  //           headers: {
-  //             authorization: token,
-  //           },
-  //         });
-  //         dataDispatch({
-  //           type: ACTION_TYPE.INITIALIZE_ADDRESS,
-  //           payload: address.address,
-  //         });
-  //       } catch (error) {
-  //         console.log("Error in Add To Address Service");
-  //       }
-  //     })();
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (token) {
+      dataDispatch({
+        type: ACTION_TYPE.INITIALIZE_ADDRESS,
+        payload: user.address,
+      });
+    }
+  }, []);
 
   return (
     <AuthContext.Provider value={{ token, setToken, loginUser, signUpUser, user, setUser }}>

@@ -62,11 +62,7 @@ export default function Navbar() {
             />
           </div>
           <ul className="navbar-right">
-            <li
-              onClick={() =>
-                token ? navigate("/userProfile") : navigate("/login")
-              }
-            >
+            <li onClick={() => (token ? navigate("/user_profile") : navigate("/login"))}>
               <img
                 src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
                 alt="login"
