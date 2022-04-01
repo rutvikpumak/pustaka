@@ -7,6 +7,8 @@ const OrderProvider = ({ children }) => {
   const [state, dispatch] = useReducer(orderReducer, orderState);
   const [couponValue, setCouponValue] = useState({ couponName: "", value: 0 });
 
+  const [order, setOrder] = useState({});
+
   return (
     <OrderContext.Provider
       value={{
@@ -15,6 +17,8 @@ const OrderProvider = ({ children }) => {
         dispatch,
         couponValue,
         setCouponValue,
+        order,
+        setOrder,
       }}
     >
       {children}

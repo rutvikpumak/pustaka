@@ -1,9 +1,5 @@
 import { Server, Model, RestSerializer } from "miragejs";
 import {
-  loginHandler,
-  signupHandler,
-} from "./backend/controllers/AuthController";
-import {
   addItemToCartHandler,
   getCartItemsHandler,
   removeItemFromCartHandler,

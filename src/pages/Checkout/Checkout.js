@@ -16,8 +16,8 @@ export function Checkout() {
   const placedHandler = () => {
     popper();
     setTimeout(() => {
-      navigate("/home");
-    }, 5000);
+      navigate("/order_summary");
+    }, 1500);
   };
   return (
     <>
