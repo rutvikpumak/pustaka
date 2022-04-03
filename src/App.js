@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Cart, Home, Product, ProductPage, UserProfile, Wishlist, Checkout } from "./pages";
+import { Cart, Home, Product, ProductPage, UserProfile, Wishlist, Checkout, Error } from "./pages";
 import Mockman from "mockman-js";
 import Navbar from "./component/Navbar/Navbar";
 import { Login, Signup } from "./pages/Auth";
@@ -26,13 +26,14 @@ function App() {
         />
 
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/home" element={<Home />} />
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/product" element={<Product />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/:productId" element={<ProductPage />} />
+          <Route path="/product/:productId" element={<ProductPage />} />
+          <Route path="*" element={<Error />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order_summary" element={<OrderSummary />} />
           <Route path="/login" element={<Login />} />

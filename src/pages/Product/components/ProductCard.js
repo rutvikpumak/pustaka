@@ -1,16 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth, useData } from "../../../context";
-import {
-  addToCart,
-  addToWishlist,
-  removeFromWishlist,
-} from "../../../services";
-import {
-  calcPercentage,
-  isProductInCart,
-  isProductInWishlist,
-} from "../../../utils/cartUtils";
+import { addToCart, addToWishlist, removeFromWishlist } from "../../../services";
+import { calcPercentage, isProductInCart, isProductInWishlist } from "../../../utils/cartUtils";
 import "./ProductCard.css";
 import { toast } from "react-toastify";
 
@@ -20,16 +12,7 @@ export function ProductCard({ product }) {
 
   const navigate = useNavigate();
   const { token } = useAuth();
-  const {
-    _id: id,
-    img,
-    name,
-    author,
-    price,
-    originalPrice,
-    isBestSeller,
-    rating,
-  } = product;
+  const { _id: id, img, name, author, price, originalPrice, isBestSeller, rating } = product;
 
   const isInCart = isProductInCart(cart, id);
   const isInWishlist = isProductInWishlist(wishlist, id);
@@ -56,7 +39,7 @@ export function ProductCard({ product }) {
         className="card-img"
         src={img}
         alt={name}
-        onClick={() => navigate(`/${product.id}`)}
+        onClick={() => navigate(`/product/${product.id}`)}
       />
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span
@@ -83,9 +66,7 @@ export function ProductCard({ product }) {
         <div className="price">
           <p className="disc-price">₹{price}</p>
           <p className="actual-price">₹{originalPrice}</p>
-          <p className="price-percentage">
-            ({calcPercentage(price, originalPrice)}% OFF)
-          </p>
+          <p className="price-percentage">({calcPercentage(price, originalPrice)}% OFF)</p>
         </div>
       </div>
       <button
@@ -93,8 +74,7 @@ export function ProductCard({ product }) {
         onClick={() => addToCartHandler()}
         disabled={btnDisabled}
       >
-        <i className="fa fa-shopping-cart"></i>{" "}
-        {isInCart ? "Go to Cart" : "Add to Cart"}
+        <i className="fa fa-shopping-cart"></i> {isInCart ? "Go to Cart" : "Add to Cart"}
       </button>
     </div>
   );
