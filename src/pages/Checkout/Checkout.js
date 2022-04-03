@@ -39,7 +39,7 @@ export function Checkout() {
                           <input
                             type="radio"
                             name="radio"
-                            className="radio-input"
+                            className="radio-input-address"
                             checked={orderAddress._id === _id}
                             onChange={() =>
                               dispatch({
