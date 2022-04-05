@@ -25,6 +25,7 @@
 .summary-right {
     height: 25rem;
     overflow-y: auto;
+    padding: 0rem 1rem;
 }
 
 .summary-left {
@@ -32,9 +33,11 @@
 }
 
 .summary-right .card {
-    border-radius: 0;
-    margin-bottom: 2rem;
+    border-radius: 10px;
+    margin: 0.5rem 0 1rem 0 ;
     width: 25rem;
+    box-shadow: none;
+    border: 1px solid var(--lightGrey);
 }
 
 .summary-right .price {
