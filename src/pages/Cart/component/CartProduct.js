@@ -3,11 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../../context";
 import { toast } from "react-toastify";
 import { calcPercentage, isProductInWishlist } from "../../../utils/cartUtils";
-import {
-  addToWishlist,
-  removeFromCart,
-  updateQtyFromCart,
-} from "../../../services";
+import { addToWishlist, removeFromCart, updateQtyFromCart } from "../../../services";
 
 export function CartProduct({ product }) {
   const { dataDispatch, wishlist } = useData();
@@ -16,8 +12,7 @@ export function CartProduct({ product }) {
 
   const isInWishlist = isProductInWishlist(wishlist, product._id);
 
-  const cartClickHandler = (type) =>
-    updateQtyFromCart(product._id, dataDispatch, token, type);
+  const cartClickHandler = (type) => updateQtyFromCart(product._id, dataDispatch, token, type);
 
   const moveToWishlistHandler = () => {
     addToWishlist(dataDispatch, product, token, toast);
@@ -27,25 +22,18 @@ export function CartProduct({ product }) {
   return (
     <div key={product._id} className="card horizontal-container">
       <div className="card-horizontal">
-        <img
-          className="card-img horizontal-img"
-          src={product.img}
-          alt={product.name}
-        />
+        <img className="card-img horizontal-img" src={product.img} alt={product.name} />
         <div className="card-info">
           <div className="card-title">
             <div>
-              <h3>{product.name}</h3>
+              <h4>{product.name}</h4>
               <p className="card-description">{product.author}</p>
             </div>
           </div>
           <div className="price">
             <p className="disc-price">₹{product.price}</p>
             <p className="actual-price">₹{product.originalPrice}</p>
-            <p className="price-percentage">
-              {" "}
-              ({calcPercentage(product.price, product.originalPrice)}% OFF)
-            </p>
+            <p className="price-percentage">({product.percentageOff}% OFF)</p>
           </div>
           <div className="qty">
             <button
@@ -73,9 +61,7 @@ export function CartProduct({ product }) {
         </button>
         <button
           className="later-btn"
-          onClick={() =>
-            isInWishlist ? navigate("/wishlist") : moveToWishlistHandler()
-          }
+          onClick={() => (isInWishlist ? navigate("/wishlist") : moveToWishlistHandler())}
         >
           {isInWishlist ? "ALREADY IN WISHLIST" : "MOVE TO WISHLIST"}
         </button>

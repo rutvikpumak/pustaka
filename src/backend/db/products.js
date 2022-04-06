@@ -56,7 +56,7 @@ export const products = [
     _id: uuid(),
     img: "https://rukminim1.flixcart.com/image/612/612/kufuikw0/book/0/6/q/ikigai-original-imag7kc7q5ugy2km.jpeg?q=70",
     name: "IKIGAI",
-    author: "I dont Know",
+    author: "Hector Garcia",
     price: 600,
     originalPrice: 1500,
     isBestSeller: false,

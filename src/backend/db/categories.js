@@ -10,7 +10,7 @@ export const categories = [
     _id: uuid(),
     categoryName: "Fiction",
     description:
-      "literature in the form of prose, especially novels, that describes imaginary events and people",
+      "Literature in the form of prose, especially novels, that describes imaginary events and people",
   },
   {
     _id: uuid(),
@@ -21,7 +21,6 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Self Help",
-    description:
-      "Meant to cause discomfort and fear for both the character and readers.",
+    description: "Meant to cause discomfort and fear for both the character and readers.",
   },
 ];

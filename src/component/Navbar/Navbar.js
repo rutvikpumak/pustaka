@@ -6,17 +6,17 @@ import "./Navbar.css";
 
 export default function Navbar() {
   const { token } = useAuth();
-  const { cart, wishlist, dataDispatch, setLoader, drawer, setDrawer } =
-    useData();
+  const { cart, wishlist, dataDispatch, setLoader, drawer, setDrawer } = useData();
   const navigate = useNavigate();
   const [input, setInput] = useState("");
 
   const searchHandler = (e) => {
-    if (e.key === "Enter" || e.keyCode === 8 || e.target.value === "")
+    if (e.key === "Enter" || e.keyCode === 8 || e.target.value === "") {
       dataDispatch({
         type: ACTION_TYPE.SEARCH,
         payload: e.target.value,
       });
+    }
 
     if (e.key === "Enter") {
       setLoader(true);
@@ -62,20 +62,12 @@ export default function Navbar() {
             />
           </div>
           <ul className="navbar-right">
-            <li onClick={() => (token ? navigate("/user_profile") : navigate("/login"))}>
-              <img
-                src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
-                alt="login"
-              />
-            </li>
             <li>
               <div
                 className="icon cart-badge"
-                onClick={() =>
-                  token ? navigate("/wishlist") : navigate("/login")
-                }
+                onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
               >
-                <i className="fa fa-heart"></i>
+                <i className="fa fa-heart" title="Wishlist"></i>
                 {wishlist && wishlist.length > 0 && (
                   <div className="notification-icon flex-center">
                     <span>{wishlist.length}</span>
@@ -83,27 +75,30 @@ export default function Navbar() {
                 )}
               </div>
             </li>
-
             <li
               className="nav-cart"
               onClick={() => (token ? navigate("/cart") : navigate("/login"))}
             >
               <div className="icon cart-badge">
-                <i className="fa fa-shopping-cart "></i>
+                <i className="fa fa-shopping-cart" title="Cart"></i>
                 {cart && cart.length > 0 && (
                   <div className="notification-icon flex-center">
                     <span>{cart.length}</span>
                   </div>
                 )}
               </div>
+            </li>{" "}
+            <li onClick={() => (token ? navigate("/user_profile") : navigate("/login"))}>
+              <img
+                src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
+                alt="login"
+                title={token ? "User Profile" : "Sign In"}
+              />
             </li>
           </ul>
         </div>
 
-        <div
-          className="search-container search-mob"
-          onKeyDown={(e) => searchHandler(e)}
-        >
+        <div className="search-container search-mob" onKeyDown={(e) => searchHandler(e)}>
           <i className="fa fa-search" aria-hidden="true"></i>
           <input
             type="search"

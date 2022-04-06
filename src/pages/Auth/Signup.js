@@ -92,25 +92,16 @@ export function Signup() {
           </div>
           <div className="auth-checkbox">
             <label className="select-input">
-              <input
-                type="checkbox"
-                name="light"
-                className="checkbox-input"
-                required
-              />
+              <input type="checkbox" name="light" className="checkbox-input" required />
               <span className="text">I accept all Terms & Conditions</span>
             </label>
           </div>
-          <div
-            className="primary-btn text-center"
-            onClick={() => signUpHandler()}
-          >
+          <div className="auth-primary-btn text-center" onClick={() => signUpHandler()}>
             <span className="link-btn">Create New Account</span>
           </div>
           <Link to="/login">
             <div className="auth-secondary-btn text-center">
-              Already have an account{" "}
-              <i className="fa fa-chevron-right" aria-hidden="true"></i>
+              Already have an account <i className="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
           </Link>
         </div>

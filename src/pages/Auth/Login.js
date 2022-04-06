@@ -38,7 +38,7 @@ export function Login() {
     <div className="auth-container flex-center">
       <div className="auth-main-container flex-center">
         <div className="auth-title">
-          <h2 className="text-center">Login</h2>
+          <h2 className="text-center">Sign In</h2>
         </div>
         <form className="auth-main" onSubmit={(e) => e.preventDefault()}>
           <div className="auth-email">
@@ -48,9 +48,7 @@ export function Login() {
               className="text-input"
               type="text"
               value={loginForm.email}
-              onChange={(e) =>
-                setLoginForm((form) => ({ ...form, email: e.target.value }))
-              }
+              onChange={(e) => setLoginForm((form) => ({ ...form, email: e.target.value }))}
               required
             />
           </div>
@@ -62,39 +60,31 @@ export function Login() {
               className="pwd-input"
               type="password"
               value={loginForm.password}
-              onChange={(e) =>
-                setLoginForm((form) => ({ ...form, password: e.target.value }))
-              }
+              onChange={(e) => setLoginForm((form) => ({ ...form, password: e.target.value }))}
               required
             />
           </div>
 
           <div className="auth-checkbox">
             <label className="select-input">
-              <input
-                type="checkbox"
-                name="light"
-                className="checkbox-input"
-                value=""
-              />
+              <input type="checkbox" name="light" className="checkbox-input" value="" />
               <span className="text">Remember Me</span>
             </label>
             <a onClick={() => navigate("/forgetPwd")}>Forgot your Password?</a>
           </div>
 
           <div
-            className="primary-btn text-center"
+            className="auth-primary-btn text-center"
             onClick={() => {
               loginHandler();
             }}
           >
-            Login with Test Credentials
+            <span className="link-btn">Login with Test Credentials</span>
           </div>
 
           <Link to="/signup">
             <div className="auth-secondary-btn text-center">
-              Create New Account
-              <i className="fa fa-chevron-right" aria-hidden="true"></i>
+              Create New Account <i className="fa fa-chevron-right" aria-hidden="true"></i>
             </div>
           </Link>
         </form>

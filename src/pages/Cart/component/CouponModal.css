@@ -22,6 +22,9 @@
     margin: 1rem 0
 }
 
+.coupon-option .select-input{
+    cursor: pointer;
+}
 .apply-btn {
     font-family: inherit;
     width: 100%;

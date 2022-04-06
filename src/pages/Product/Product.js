@@ -21,12 +21,7 @@ export function Product() {
 
   const searchData = searchProduct([...data], search);
   const filteredData = filterData([...searchData], category);
-  const sortedData = sortData(
-    [...filteredData],
-    sortBy,
-    priceRange,
-    sortByRating
-  );
+  const sortedData = sortData([...filteredData], sortBy, priceRange, sortByRating);
   useEffect(() => {
     setLoader(true);
     setTimeout(() => {
@@ -36,10 +31,7 @@ export function Product() {
   return (
     <div className="product-main-container">
       <ProductFilterBar />
-      <div
-        className="product-list-container"
-        onClick={() => drawer && setDrawer(!drawer)}
-      >
+      <div className="product-list-container" onClick={() => drawer && setDrawer(!drawer)}>
         <div className="product-list-header">
           {sortedData.length > 0 ? (
             <>
@@ -47,15 +39,13 @@ export function Product() {
               <p className="paragraph-sm">({sortedData.length} products)</p>
             </>
           ) : (
-            data.length > 0 && (
-              <h1>Sorry , Products are not available for chosen category.</h1>
-            )
+            data.length > 0 && <h1>Sorry , Products are not available for chosen category.</h1>
           )}
         </div>
 
         <div className="responsive-grid">
           {sortedData.map((product) => (
-            <ProductCard product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
       </div>

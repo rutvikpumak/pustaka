@@ -34,29 +34,21 @@ export function ProductPage() {
     token
       ? isInWishlist
         ? navigate("/wishlist")
-        : addToWishlist(
-            dataDispatch,
-            product,
-            token,
-            toast,
-            setWishlistBtnDisabled
-          )
+        : addToWishlist(dataDispatch, product, token, toast, setWishlistBtnDisabled)
       : navigate("/login");
   };
 
   if (products.length === 0) {
-    setLoader(true);
+    setLoader(() => true);
     return <></>;
   } else {
-    setLoader(false);
+    setLoader(() => false);
     return (
       <div className="single-card-container flex-center">
         <div className="single-card flex-center">
           <div className="single-card-left">
             <img className="single-card-img" src={product?.img} alt="" />
-            {product?.isBestSeller && (
-              <span className="card-badge">Best Seller</span>
-            )}
+            {product?.isBestSeller && <span className="card-badge">Best Seller</span>}
           </div>
 
           <div className="single-card-right">
@@ -70,32 +62,27 @@ export function ProductPage() {
             <div className="price">
               <p className="disc-price">₹{product?.price}</p>
               <p className="actual-price">₹{product?.originalPrice}</p>
-              <p className="price-percentage">
-                {calcPercentage(product?.price, product?.originalPrice)}% OFF
-              </p>
+              <p className="price-percentage">{product.percentageOff}% OFF</p>
             </div>
             <p className="paragraph-sm msg">
-              <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few
-              Left !
+              <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few Left !
             </p>
             <span className="tag-msg">
               <i className="fa fa-tag" aria-hidden="true"></i> Fastest Delivery
             </span>
             <span className="tag-msg">
-              <i className="fa fa-tag" aria-hidden="true"></i> Inclusive of All
-              Taxes
+              <i className="fa fa-tag" aria-hidden="true"></i> Inclusive of All Taxes
             </span>
             <span className="tag-msg">
-              <i className="fa fa-tag" aria-hidden="true"></i> Cash On Delivery
-              Available
+              <i className="fa fa-tag" aria-hidden="true"></i> Cash On Delivery Available
             </span>
             <div className="other-info">
               <li>
                 <ul>
-                  Author : <p className="card-description">{product?.author}</p>
+                  Author : <p>{product?.author}</p>
                 </ul>
                 <ul>
-                  Category : <p className="category">{product?.category}</p>
+                  Category : <p>{product?.category}</p>
                 </ul>
                 <ul>
                   Binding : <p>Hard Cover</p>

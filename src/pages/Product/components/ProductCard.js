@@ -12,7 +12,17 @@ export function ProductCard({ product }) {
 
   const navigate = useNavigate();
   const { token } = useAuth();
-  const { _id: id, img, name, author, price, originalPrice, isBestSeller, rating } = product;
+  const {
+    _id: id,
+    img,
+    name,
+    author,
+    price,
+    originalPrice,
+    isBestSeller,
+    rating,
+    percentageOff,
+  } = product;
 
   const isInCart = isProductInCart(cart, id);
   const isInWishlist = isProductInWishlist(wishlist, id);
@@ -66,7 +76,7 @@ export function ProductCard({ product }) {
         <div className="price">
           <p className="disc-price">₹{price}</p>
           <p className="actual-price">₹{originalPrice}</p>
-          <p className="price-percentage">({calcPercentage(price, originalPrice)}% OFF)</p>
+          <p className="price-percentage">({percentageOff}% OFF)</p>
         </div>
       </div>
       <button

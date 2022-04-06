@@ -11,8 +11,8 @@ export default function WishlistCard({ product, cart, dataDispatch }) {
   const isInCart = isProductInCart(cart, product._id);
 
   const moveToCartHandler = () => {
-    addToCart(dataDispatch, product, token, toast);
     removeFromWishlist(product._id, dataDispatch, token, toast);
+    addToCart(dataDispatch, product, token, toast);
   };
 
   return (
@@ -36,9 +36,7 @@ export default function WishlistCard({ product, cart, dataDispatch }) {
             <i
               className="fa fa-trash-o"
               aria-hidden="true"
-              onClick={() =>
-                removeFromWishlist(product._id, dataDispatch, token, toast)
-              }
+              onClick={() => removeFromWishlist(product._id, dataDispatch, token, toast)}
             />
           </div>
         </header>

@@ -1,4 +1,4 @@
-import { ACTION_TYPE } from "../utils";
+import { ACTION_TYPE, calcPercentage } from "../utils";
 
 export const initialState = {
   sortBy: "",
@@ -33,7 +33,10 @@ export function dataReducer(state, action) {
     case ACTION_TYPE.INITIALIZE_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.map((product) => ({
+          ...product,
+          percentageOff: calcPercentage(product.price, product.originalPrice),
+        })),
       };
     case ACTION_TYPE.INITIALIZE_ADDRESS:
       return {

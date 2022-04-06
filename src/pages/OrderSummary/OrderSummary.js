@@ -60,11 +60,12 @@ export function OrderSummary() {
           </div>
         </>
       ) : (
-        <div className="flex-center">
+        <>
+          <h3 class="order-msg">Look's like your order is empty.</h3>
           <Link to="/product">
             <button className="link-btn">Shop Now</button>
           </Link>
-        </div>
+        </>
       )}
     </div>
   );

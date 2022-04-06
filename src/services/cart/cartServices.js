@@ -1,19 +1,13 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../../utils";
 
-export async function addToCart(
-  dataDispatch,
-  product,
-  token,
-  toast,
-  setBtnDisabled
-) {
-  setBtnDisabled && setBtnDisabled(true);
+export async function addToCart(dataDispatch, product, token, toast, setBtnDisabled) {
+  setBtnDisabled && setBtnDisabled(() => true);
   try {
     const {
       data: { cart },
     } = await axios.post(
-      "api/user/cart",
+      "/api/user/cart",
       {
         product,
       },
@@ -33,7 +27,7 @@ export async function addToCart(
     toast.error("Something Went Wrong !");
     console.log("Error in addToCart service", error);
   }
-  setBtnDisabled && setBtnDisabled(false);
+  setBtnDisabled && setBtnDisabled(() => false);
 }
 
 export async function removeFromCart(id, dataDispatch, token, toast) {

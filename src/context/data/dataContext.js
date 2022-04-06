@@ -1,11 +1,5 @@
 import axios from "axios";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import { ACTION_TYPE } from "../../utils/constant";
 import { initialState, dataReducer } from "../../reducer/DataReducer";
 

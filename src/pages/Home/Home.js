@@ -50,7 +50,7 @@ export function Home() {
             <div className="category-heading text-center">
               <h2>Featured Book Categories</h2>
               <p className="paragraph-md">
-                There are many categories of books available at Pustaka, Choose your favorite one
+                There are many categories of books available at Pustaka. Choose your favorite one
                 now.
               </p>
             </div>
@@ -70,17 +70,17 @@ export function Home() {
           </div>
         </div>
       </div>
-      <footer class="footer footer-mn">
-        <section class="footer-mn-lt">
+      <footer className="footer footer-mn">
+        <section className="footer-mn-lt">
           <h2>Pustaka</h2>
-          <p class=" hm-page-paragraph">
+          <p className=" hm-page-paragraph">
             Fill your house with stacks of books, in all the crannies and all the nooks.
           </p>
           <p>Privacy Policy</p>
           <p>Terms of Use</p>
           <p className="paragraph-sm">© 2022 Pustaka</p>
         </section>
-        <section class="footer-mn-rt">
+        <section className="footer-mn-rt">
           <ul>
             <li>Connect</li>
             <li>
@@ -100,7 +100,7 @@ export function Home() {
             </li>
           </ul>
         </section>
-        <section class="footer-mn-rt">
+        <section className="footer-mn-rt">
           <ul>
             <li>Resources</li>
             <Link to="/signup">

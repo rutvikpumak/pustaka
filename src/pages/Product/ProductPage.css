@@ -67,7 +67,7 @@
 
 .other-info li ul {
     display: flex;
-    color: var(--lightGrey);
+    color: #8b8b8b;
     justify-content: space-between;
 }
 

@@ -55,8 +55,9 @@
 }
 
 .move-to-cart {
-    max-width: 80%;
+    max-width: 90%;
     padding: 0.25rem;
+    border-radius: 0;
 }
 
 @media screen and (max-width:500px) {

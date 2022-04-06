@@ -67,6 +67,9 @@
     border-radius: 10px;
 }
 
+.order-msg{
+    margin-bottom: 2rem;
+}
 @media screen and (max-width:950px){
     .summary-main {
         flex-wrap: wrap;

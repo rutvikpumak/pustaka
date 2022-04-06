@@ -15,7 +15,7 @@
 
 .product-list-header {
     display: flex;
-    align-items: flex-end;
+    align-items: baseline;
     gap: 0.5rem
 }
 
@@ -31,7 +31,10 @@
     margin-right: 0.5rem;
 }
 
-
+.price-percentage{
+    font-size: 1rem;
+    align-self: center;
+}
 @media screen and (max-width: 950px) {
 
     .trans-on {

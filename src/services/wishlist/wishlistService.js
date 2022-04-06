@@ -1,19 +1,13 @@
 import axios from "axios";
 import { ACTION_TYPE } from "../../utils";
 
-export async function addToWishlist(
-  dataDispatch,
-  product,
-  token,
-  toast,
-  setWishlistBtnDisabled
-) {
-  setWishlistBtnDisabled && setWishlistBtnDisabled(true);
+export async function addToWishlist(dataDispatch, product, token, toast, setWishlistBtnDisabled) {
+  setWishlistBtnDisabled && setWishlistBtnDisabled(() => true);
   try {
     const {
       data: { wishlist },
     } = await axios.post(
-      "api/user/wishlist",
+      "/api/user/wishlist",
       {
         product,
       },
@@ -32,7 +26,7 @@ export async function addToWishlist(
     toast.error("Something Went Wrong !");
     console.log("Error in Add To Wishlist Service", error);
   }
-  setWishlistBtnDisabled && setWishlistBtnDisabled(false);
+  setWishlistBtnDisabled && setWishlistBtnDisabled(() => false);
 }
 
 export async function removeFromWishlist(id, dataDispatch, token, toast) {

@@ -64,6 +64,8 @@
 
 .card-description {
     text-align: left;
+    color: #a2a2a2;
+    font-weight: 600;
 }
 
 @media screen and (max-width: 950px) {
