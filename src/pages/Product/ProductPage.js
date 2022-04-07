@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ProductPage.css";
 import { useNavigate, useParams } from "react-router";
 import { useAuth, useData } from "../../context";
-import { calcPercentage } from "../../utils";
 import { addToCart, addToWishlist } from "../../services";
 import { isProductInCart, isProductInWishlist } from "../../utils/cartUtils";
 import { toast } from "react-toastify";
@@ -13,7 +12,7 @@ export function ProductPage() {
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [btnWishlistDisabled, setWishlistBtnDisabled] = useState(false);
   const { token } = useAuth();
-  const { products, cart, dataDispatch, wishlist, setLoader } = useData();
+  const { products, cart, dataDispatch, wishlist, setLoader, changeTitle } = useData();
 
   const product = products?.find((product) => {
     return product.id === productId;
@@ -37,6 +36,7 @@ export function ProductPage() {
         : addToWishlist(dataDispatch, product, token, toast, setWishlistBtnDisabled)
       : navigate("/login");
   };
+  useEffect(() => changeTitle(product?.name), []);
 
   if (products.length === 0) {
     setLoader(() => true);

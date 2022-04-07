@@ -9,7 +9,6 @@ const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const [drawer, setDrawer] = useState(false);
   const [loader, setLoader] = useState(false);
-
   useEffect(() => {
     (async () => {
       try {
@@ -30,6 +29,7 @@ const DataProvider = ({ children }) => {
     })();
   }, []);
 
+  const changeTitle = (title) => (document.title = `${title} | Pustaka`);
   return (
     <DataContext.Provider
       value={{
@@ -43,6 +43,7 @@ const DataProvider = ({ children }) => {
         wishlist: state.wishlist,
         search: state.search,
         address: state.address,
+        changeTitle,
         loader,
         setLoader,
         drawer,

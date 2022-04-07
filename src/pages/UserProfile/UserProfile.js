@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
 import { removeFromAddress } from "../../services";
@@ -10,7 +10,7 @@ import "./UserProfile.css";
 export function UserProfile() {
   const navigate = useNavigate();
   const { user, setUser, token, setToken } = useAuth();
-  const { setLoader, dataDispatch, address } = useData();
+  const { setLoader, dataDispatch, address, changeTitle } = useData();
   const { firstName, lastName, email } = user;
   const [check, setChecked] = useState(true);
   const formValue = {
@@ -39,7 +39,7 @@ export function UserProfile() {
     setTimeout(() => {
       setLoader(false);
     }, 500);
-    navigate("/home");
+    navigate("/");
   };
 
   const editAddress = (_id, name, street, city, state, country, zipCode, mobile) => {
@@ -56,6 +56,8 @@ export function UserProfile() {
       mobile,
     }));
   };
+
+  useEffect(() => changeTitle("My Profile"), []);
   return (
     <div className="profile-container">
       <div className="profile-main-container">

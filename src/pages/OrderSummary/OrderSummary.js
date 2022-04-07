@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useData } from "../../context";
 import { useOrder } from "../../context/order/orderContext";
 import "./OrderSummary.css";
 export function OrderSummary() {
@@ -7,6 +8,8 @@ export function OrderSummary() {
     order: { amount, paymentId, delivery, products },
   } = useOrder();
 
+  const { changeTitle } = useData();
+  useEffect(() => changeTitle("Order Summary"), []);
   return (
     <div className="summary-wrapper flex-center">
       {paymentId ? (

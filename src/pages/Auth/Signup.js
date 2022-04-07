@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Auth.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
@@ -12,7 +12,7 @@ export function Signup() {
   };
   const [signUpForm, setSignUpForm] = useState(signUpFields);
   const { token, signUpUser } = useAuth();
-  const { setLoader } = useData();
+  const { setLoader, changeTitle } = useData();
   const navigate = useNavigate();
 
   const signUpHandler = () => {
@@ -37,6 +37,7 @@ export function Signup() {
     }, 500);
   }
 
+  useEffect(() => changeTitle("Sign Up"), []);
   return (
     <div className="auth-container flex-center">
       <div className="auth-main-container flex-center">

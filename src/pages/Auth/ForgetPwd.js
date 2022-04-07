@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useData } from "../../context";
 import "./Auth.css";
 export function ForgetPwd() {
+  const { changeTitle } = useData();
+  useEffect(() => changeTitle("Forgot Password"), []);
+
   return (
     <div className="auth-container flex-center">
       <div className="auth-main-container flex-center">
@@ -10,11 +14,7 @@ export function ForgetPwd() {
         <div className="auth-main">
           <div className="auth-email">
             <label for="mail">Email Address</label>
-            <input
-              placeholder="test@gmail.com"
-              className="text-input"
-              type="text"
-            />
+            <input placeholder="test@gmail.com" className="text-input" type="text" />
           </div>
         </div>
         <div className="primary-btn text-center">

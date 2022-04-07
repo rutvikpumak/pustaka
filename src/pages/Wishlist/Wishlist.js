@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useData } from "../../context";
 import WishlistCard from "./component/WishlistCard";
 import "./Wishlist.css";
 
 export function Wishlist() {
-  const { wishlist, cart, dataDispatch } = useData();
+  const { wishlist, cart, dataDispatch, changeTitle } = useData();
   const isWishlistHasItem = wishlist.length > 0;
 
+  useEffect(() => changeTitle("Wishlist", []));
   return (
     <div className="wishlist-container">
       <div className="wishlist-main-container flex-center">

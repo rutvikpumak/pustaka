@@ -8,8 +8,9 @@ import { useData } from "../../context";
 export function Home() {
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
-  const { dataDispatch } = useData();
+  const { dataDispatch, changeTitle } = useData();
   useEffect(() => {
+    changeTitle("Online Shopping Site for Books");
     axios
       .get("/api/categories")
       .then((response) => setCategories(response.data.categories))

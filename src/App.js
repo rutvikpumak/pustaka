@@ -9,6 +9,7 @@ import { Loader } from "./component/Loader/Loader";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { OrderSummary } from "./pages/OrderSummary/OrderSummary";
+import { PrivateRoute } from "./component/PrivateRoute/PrivateRoute";
 
 function App() {
   const { loader } = useData();
@@ -27,18 +28,53 @@ function App() {
 
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/home" element={<Home />} />
           <Route path="/mockman" element={<Mockman />} />
           <Route path="/product" element={<Product />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/product/:productId" element={<ProductPage />} />
-          <Route path="*" element={<Error />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order_summary" element={<OrderSummary />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/user_profile" element={<UserProfile />} />
+          <Route path="*" element={<Error />} />
+          <Route
+            path="/wishlist"
+            element={
+              <PrivateRoute>
+                <Wishlist />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <PrivateRoute>
+                <Checkout />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/cart"
+            element={
+              <PrivateRoute>
+                <Cart />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/user_profile"
+            element={
+              <PrivateRoute>
+                <UserProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/order_summary"
+            element={
+              <PrivateRoute>
+                <OrderSummary />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>

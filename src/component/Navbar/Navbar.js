@@ -45,7 +45,7 @@ export default function Navbar() {
                 onClick={() => setDrawer(!drawer)}
               />
             )}
-            <Link to="/home">
+            <Link to="/">
               <h2>Pustaka</h2>
             </Link>
           </div>
@@ -63,10 +63,7 @@ export default function Navbar() {
           </div>
           <ul className="navbar-right">
             <li>
-              <div
-                className="icon cart-badge"
-                onClick={() => (token ? navigate("/wishlist") : navigate("/login"))}
-              >
+              <div className="icon cart-badge" onClick={() => navigate("/wishlist")}>
                 <i className="fa fa-heart" title="Wishlist"></i>
                 {wishlist && wishlist.length > 0 && (
                   <div className="notification-icon flex-center">
@@ -75,10 +72,7 @@ export default function Navbar() {
                 )}
               </div>
             </li>
-            <li
-              className="nav-cart"
-              onClick={() => (token ? navigate("/cart") : navigate("/login"))}
-            >
+            <li className="nav-cart" onClick={() => navigate("/cart")}>
               <div className="icon cart-badge">
                 <i className="fa fa-shopping-cart" title="Cart"></i>
                 {cart && cart.length > 0 && (
@@ -88,7 +82,7 @@ export default function Navbar() {
                 )}
               </div>
             </li>{" "}
-            <li onClick={() => (token ? navigate("/user_profile") : navigate("/login"))}>
+            <li onClick={() => navigate("/user_profile")}>
               <img
                 src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
                 alt="login"

@@ -17,6 +17,7 @@ export function Product() {
     search,
     drawer,
     setDrawer,
+    changeTitle,
   } = useData();
 
   const searchData = searchProduct([...data], search);
@@ -27,6 +28,7 @@ export function Product() {
     setTimeout(() => {
       setLoader(false);
     }, 1000);
+    changeTitle("Products");
   }, []);
   return (
     <div className="product-main-container">

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useData } from "../../context";
 import { CheckoutPrice } from "./CheckoutPrice";
 import "./Checkout.css";
 import { useOrder } from "../../context/order/orderContext";
 import { ACTION_TYPE, popper } from "../../utils";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function Checkout() {
-  const { address } = useData();
+  const { address, cart, changeTitle } = useData();
   const { dispatch, orderAddress } = useOrder();
   const [msg, setMsg] = useState(false);
   const navigate = useNavigate();
@@ -19,12 +18,16 @@ export function Checkout() {
       navigate("/order_summary");
     }, 1500);
   };
+  useEffect(() => {
+    cart.length === 0 && navigate("/product");
+    changeTitle("Checkout");
+  }, []);
   return (
     <>
       <div className="checkout-container">
         {msg ? (
           <h1 className="checkout-main-container flex-center  text-center">
-            🥂 You order is successfully placed !{placedHandler()}
+            🥂 You order has successfully placed !{placedHandler()}
           </h1>
         ) : (
           <div className="checkout-main-container flex-center">

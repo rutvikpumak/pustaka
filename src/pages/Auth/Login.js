@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Auth.css";
 import { useAuth, useData } from "../../context";
 
@@ -10,7 +10,8 @@ export function Login() {
   });
   const navigate = useNavigate();
   const { token, loginUser } = useAuth();
-  const { setLoader } = useData();
+  const { setLoader, changeTitle } = useData();
+  const location = useLocation();
 
   useEffect(() => {
     (async () => {
@@ -18,10 +19,11 @@ export function Login() {
     })();
   }, [loginForm.email, loginForm.password]);
 
+  useEffect(() => changeTitle("Sign In"), []);
   if (token) {
     setLoader(true);
     setTimeout(() => {
-      navigate("/product");
+      navigate(location?.state?.from || "/product", { replace: true });
       setLoader(false);
     }, 500);
   }
