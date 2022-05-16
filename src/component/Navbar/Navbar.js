@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth, useData } from "../../context";
 import { ACTION_TYPE } from "../../utils";
@@ -8,30 +8,21 @@ export default function Navbar() {
   const { token } = useAuth();
   const { cart, wishlist, dataDispatch, setLoader, drawer, setDrawer } = useData();
   const navigate = useNavigate();
+  let timer = useRef();
   const [input, setInput] = useState("");
 
-  const searchHandler = (e) => {
-    if (e.key === "Enter" || e.keyCode === 8 || e.target.value === "") {
+  useEffect(() => {
+    clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
       dataDispatch({
         type: ACTION_TYPE.SEARCH,
-        payload: e.target.value,
+        payload: input,
       });
-    }
-
-    if (e.key === "Enter") {
       setLoader(true);
       setTimeout(() => setLoader(false), 500);
-    }
-    navigate("/product");
-  };
-
-  useEffect(() => {
-    setInput("");
-    dataDispatch({
-      type: ACTION_TYPE.SEARCH,
-      payload: "",
-    });
-  }, [navigate]);
+      navigate("/product");
+    }, 500);
+  }, [input]);
 
   return (
     <div className="nav-header">
@@ -57,7 +48,6 @@ export default function Navbar() {
               className="search-bar"
               value={input}
               placeholder="Search for product"
-              onKeyDown={(e) => searchHandler(e)}
               onChange={(e) => setInput(e.target.value)}
             />
           </div>
