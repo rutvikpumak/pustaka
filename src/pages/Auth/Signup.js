@@ -91,12 +91,6 @@ export function Signup() {
               required
             />
           </div>
-          <div className="auth-checkbox">
-            <label className="select-input">
-              <input type="checkbox" name="light" className="checkbox-input" required />
-              <span className="text">I accept all Terms & Conditions</span>
-            </label>
-          </div>
           <div className="auth-primary-btn text-center" onClick={() => signUpHandler()}>
             <span className="link-btn">Create New Account</span>
           </div>

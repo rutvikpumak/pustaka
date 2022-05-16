@@ -67,14 +67,6 @@ export function Login() {
             />
           </div>
 
-          <div className="auth-checkbox">
-            <label className="select-input">
-              <input type="checkbox" name="light" className="checkbox-input" value="" />
-              <span className="text">Remember Me</span>
-            </label>
-            <a onClick={() => navigate("/forgetPwd")}>Forgot your Password?</a>
-          </div>
-
           <div
             className="auth-primary-btn text-center"
             onClick={() => {
