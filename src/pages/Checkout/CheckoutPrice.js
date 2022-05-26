@@ -93,8 +93,8 @@ export function CheckoutPrice({ setMsg }) {
           </ul>
         </li>
         <li>
-          {cart.map(({ name, qty }) => (
-            <ul>
+          {cart.map(({ _id, name, qty }) => (
+            <ul key={_id}>
               <p>{name}</p>
               <p>{qty}</p>
             </ul>

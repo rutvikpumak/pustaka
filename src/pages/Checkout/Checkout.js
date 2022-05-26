@@ -36,41 +36,39 @@ export function Checkout() {
               <div className="checkout-manage-item ">
                 {address &&
                   address.map(({ _id, name, street, city, state, country, zipCode, mobile }) => (
-                    <>
-                      <div className="address-checkout-container ">
-                        <label className="select-input">
-                          <input
-                            type="radio"
-                            name="radio"
-                            className="radio-input-address"
-                            checked={orderAddress._id === _id}
-                            onChange={() =>
-                              dispatch({
-                                type: ACTION_TYPE.ORDER_ADDRESS,
-                                payload: {
-                                  _id,
-                                  name,
-                                  street,
-                                  city,
-                                  state,
-                                  country,
-                                  zipCode,
-                                  mobile,
-                                },
-                              })
-                            }
-                          />
-                          <p className="paragraph-md ">{name}</p>
-                        </label>
-                        <div className="address-details-checkout">
-                          <p className="paragraph-sm">
-                            {street}, {city},{state}. {zipCode}
-                          </p>
-                          <p className="paragraph-sm">{country}.</p>
-                          <p className="paragraph-sm">Phone Number : {mobile}</p>
-                        </div>
+                    <div key={_id} className="address-checkout-container ">
+                      <label className="select-input">
+                        <input
+                          type="radio"
+                          name="radio"
+                          className="radio-input-address"
+                          checked={orderAddress._id === _id}
+                          onChange={() =>
+                            dispatch({
+                              type: ACTION_TYPE.ORDER_ADDRESS,
+                              payload: {
+                                _id,
+                                name,
+                                street,
+                                city,
+                                state,
+                                country,
+                                zipCode,
+                                mobile,
+                              },
+                            })
+                          }
+                        />
+                        <p className="paragraph-md ">{name}</p>
+                      </label>
+                      <div className="address-details-checkout">
+                        <p className="paragraph-sm">
+                          {street}, {city},{state}. {zipCode}
+                        </p>
+                        <p className="paragraph-sm">{country}.</p>
+                        <p className="paragraph-sm">Phone Number : {mobile}</p>
                       </div>
-                    </>
+                    </div>
                   ))}
               </div>
               <CheckoutPrice setMsg={setMsg} />

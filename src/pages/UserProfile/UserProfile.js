@@ -101,7 +101,7 @@ export function UserProfile() {
               className="tabs"
               id="address"
               checked={!check}
-              onClick={() => setChecked(!check)}
+              onChange={() => setChecked(!check)}
             />
             <label htmlFor="address">Address</label>
             <div className="tab">
@@ -109,7 +109,7 @@ export function UserProfile() {
 
               {address &&
                 address.map(({ _id, name, street, city, state, country, zipCode, mobile }) => (
-                  <div className="address-container">
+                  <div key={_id} className="address-container">
                     <p className="paragraph-md">{name}</p>
                     <div>
                       <p className="paragraph-sm">

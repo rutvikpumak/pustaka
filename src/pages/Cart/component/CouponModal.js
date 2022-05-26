@@ -17,16 +17,12 @@ export function CouponModal({ setCouponModal }) {
       <div className="modal">
         <div className="modal-header">
           <h3>Apply Coupon</h3>
-          <i
-            className="fa fa-times"
-            aria-hidden="true"
-            onClick={() => setCouponModal(false)}
-          />
+          <i className="fa fa-times" aria-hidden="true" onClick={() => setCouponModal(false)} />
         </div>
 
         <div className="modal-main">
           {COUPONS.map(({ couponName, value }) => (
-            <div className="coupon-option">
+            <div className="coupon-option" key={couponName}>
               <label className="select-input">
                 <input
                   type="radio"

@@ -57,7 +57,7 @@ export function CartPrice({ setCouponModal }) {
           <ul>
             <p>Coupon Discount</p>
             <p>
-              {coupon !== 0 && "-"}₹ {coupon}
+              {coupon !== 0 && "-"}₹ {coupon.toFixed(2)}
             </p>
           </ul>
           {coupon !== 0 && (
